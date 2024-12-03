@@ -2,8 +2,9 @@
     width: 100%;
     height: 100%;
     background-color: #161616;
-    display: flex;
+    display: block;
     flex-direction: row;
+    margin: 0;
   }
 
 .footer .watchlist {
@@ -13,5 +14,16 @@
     font-family: Verdana;
     font-style: italic;
     letter-spacing: 2px;
-
+    padding-left: 102px;
   }
+
+  .footer .arTitles {
+    font-size: 12px;
+  }
+
+.footer .footnote {
+    color: white;
+    height: 50%;
+    text-align: center;
+    font-size: 12px;
+}
