@@ -83,6 +83,7 @@
 .navbar .center .searchbar {
 background-color: whitesmoke;
 border-radius: 10px;
+border: none;
 width: 600px;
 height: 36px;
 padding: 0 10px;

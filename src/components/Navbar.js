@@ -32,8 +32,8 @@ function Navbar() {
         <input className='searchbar' type='text' placeholder='Search OMGDB' />
       </div>
       <div className='rightSide'>
-        <div className='watchlist'>Watchlist</div>
-        <div className='signin'>Sign In</div>
+        <button className='watchlist'>Watchlist</button>
+        <button className='signin'>Sign In</button>
         </div>
       </div>
   );

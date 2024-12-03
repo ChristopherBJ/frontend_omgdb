@@ -1,5 +1,9 @@
 import React from 'react'
 import '../styles/Title.css'
+import { useEffect, useState } from 'react'
+
+//Write your API key here
+const APIkey = 'your_api_key_here'
 
 function Title() {
   return (
