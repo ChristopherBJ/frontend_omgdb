@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../assets/OMGDB_logo.png';
+import logo from '../assets/Omg_main_logo.svg';
 import '../styles/Navbar.css';
 
 function Navbar() {

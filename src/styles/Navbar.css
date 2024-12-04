@@ -14,11 +14,6 @@
     padding-left: 102px;
   }
   
-  .navbar .leftSide img {
-    height: 60px;
-    background-color: #FFBA72;
-  }
-
   .navbar .rightSide {
     flex: 50%;
     height: 100%;
