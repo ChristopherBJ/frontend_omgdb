@@ -5,6 +5,15 @@
 /.pnp
 .pnp.js
 
+# dotenv files
+.env
+
+# certificets
+certs/*
+!certs/.ignore
+certs/OMGDBapp.pfx
+*.pfx
+
 # testing
 /coverage
 
