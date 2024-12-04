@@ -1,0 +1,9 @@
+services:
+  app:
+    container_name: omgdb-frontend-c
+    image: omgdb_frontend:latest
+    build: 
+      context: .
+      dockerfile: omgdb_frontend.Dockerfile
+    ports:
+      - "8080:80"
