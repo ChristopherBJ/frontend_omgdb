@@ -4,119 +4,20 @@
     background-color: #161616;
     display: flex;
     flex-direction: row;
-  }
-  
-  .navbar .leftSide {
-    flex: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 102px;
-  }
-  
-  .navbar .rightSide {
-    flex: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 102px;
     color: white;
   }
-
-.leftSide img {
+  
+.Logo {
   height: 50px;
 }
 
-.rightSide {
-  position: relative;
+.custom-button {
+  background-color: #fadb61;
+  border-color: #fadb61;
+  color: #000; /* Ensure text is readable */
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdownButton {
-  background-color: #161616;
-  color: #FFBB6E;
-  font-weight : bold;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  margin-left: 18px;
-}
-
-.dropdownButton:hover {
-  background-color: #202020;
-  border-radius : 10px;
-}
-
-.dropdownContent {
-  display: block;
-  position: absolute;
-  margin-left: 18px;
-  background-color: #FFD5A9;
-  min-width: 150px;
-  z-index: 1;
-  border-radius: 5px;
-  box-shadow: #9C8EF7;
-}
-
-.dropdownContent a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdownContent a:hover {
-  background-color: #9C8EF7;
-  border-radius: 5px;
-}
-
-.navbar .center .searchbar {
-background-color: whitesmoke;
-border-radius: 10px;
-border: none;
-width: 600px;
-height: 36px;
-padding: 0 10px;
-margin-top: 12px;
-}
-
-.navbar .rightSide .watchlist {
-  background-color: #161616;
-  color: #FFBB6E;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: 18px;
-  border-radius: 10px;
-  margin-top: 12px;
-}
-
-.navbar .rightSide .watchlist:hover {
-  background-color: #202020;
-  border-radius : 10px;
-}
-
-.navbar .rightSide .signin{
-  background-color: #161616;
-  color: #FFBB6E;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: 18px;
-  border-radius: 10px;
-  margin-top: 12px;
-}
-
-.navbar .rightSide .signin:hover {
-  background-color: #202020;
-  border-radius : 10px;
+.custom-button:hover {
+  background-color: #eac04e; /* Slightly darker color for hover effect */
+  border-color: #eac04e;
 }
