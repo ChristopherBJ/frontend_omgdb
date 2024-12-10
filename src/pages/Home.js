@@ -1,74 +1,66 @@
-import React, { useState } from 'react';
-import '../styles/Home.css';
+import React from 'react';
+import { Carousel, Container, Row, Col } from 'react-bootstrap';
+import '../styles/Home.css'; // Import the custom CSS
 
-function Home() {
-  const [index, setIndex] = useState(0);
-
-  // Number of visible boxes at once (2 boxes)
-  const boxesPerSlide = 2;
-
-  // List of all boxes (8 boxes)
-  const boxes = [
-    'Box 1', 'Box 2', 'Box 3', 'Box 4', 'Box 5', 'Box 6', 'Box 7', 'Box 8'
-  ];
-
-  // Move to the next set of boxes
-  const nextSlide = () => {
-    if (index < boxes.length - 1) {
-      setIndex(index + 1); // Move forward by 1 box
+const Home = () => {
+  // Function to generate carousel boxes dynamically
+  const generateBoxes = (prefix, start, end) => {
+    let boxes = [];
+    for (let i = start; i <= end; i++) {
+      boxes.push(
+        <Col key={i} xs={12} sm={6} md={2} className="mb-3">
+          <div className="carousel-box">
+            {prefix} {i}
+          </div>
+        </Col>
+      );
     }
+    return boxes;
   };
 
-  // Move to the previous set of boxes
-  const prevSlide = () => {
-    if (index > 0) {
-      setIndex(index - 1); // Move backward by 1 box
+  // Logic to generate the carousel blocks in chunks of 6 items
+  const generateCarouselChunks = (prefix, totalItems, itemsPerChunk) => {
+    const chunks = [];
+    for (let i = 0; i < totalItems; i += itemsPerChunk) {
+      const start = i + 1;
+      const end = Math.min(i + itemsPerChunk, totalItems);
+      const chunkItems = generateBoxes(prefix, start, end);
+      chunks.push(
+        <Carousel.Item key={i}>
+          <Row>{chunkItems}</Row>
+        </Carousel.Item>
+      );
     }
+    return chunks;
   };
 
   return (
-    <div className="home">
-<div>
-      {/* "Featured Today" text */}
-      <div className="featured">
-        <h2>Featured Today</h2>
-      </div>
-    <div className="carousel-container">
-      <div
-        className="carousel-items"
-        style={{
-          transform: `translateX(-${(index * 100) / boxes.length}%)`, // Adjusted translation for 1 box
-          transition: 'transform 0.5s ease', // Smooth transition
-        }}
-      >
-        {boxes.map((box, idx) => (
-          <div key={idx} className="box">{box}</div>
-        ))}
-      </div>
+    <Container>
+      {/* Featured Today Carousel (2 items per chunk) */}
+      <h2>Featured Today</h2>
+      <Carousel id="carouselExampleFeatured" interval={null}>
+        {generateCarouselChunks('Box', 2, 2)} {/* 2 items per chunk for Featured Today */}
+      </Carousel>
 
-      {/* Custom Previous and Next Buttons */}
-      <div className="carousel-controls">
-        <button 
-          className="carousel-control-prev" 
-          onClick={prevSlide}
-          disabled={index === 0} // Disable the "Previous" button at the start
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="sr-only">Previous</span>
-        </button>
-        <button 
-          className="carousel-control-next" 
-          onClick={nextSlide}
-          disabled={index >= boxes.length - boxesPerSlide} // Disable the "Next" button at the end
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="sr-only">Next</span>
-        </button>
-      </div>
-    </div>
-  </div>
-  </div>
+      {/* Actors Carousel */}
+      <h2>Actors</h2>
+      <Carousel id="carouselExampleActors" interval={null}>
+        {generateCarouselChunks('Actor', 60, 6)} {/* 6 items per chunk for this carousel */}
+      </Carousel>
+
+      {/* Movies Carousel */}
+      <h2>Movies</h2>
+      <Carousel id="carouselExampleMovies" interval={null}>
+        {generateCarouselChunks('Movie', 30, 6)} {/* 6 items per chunk for this carousel */}
+      </Carousel>
+
+      {/* Series Carousel */}
+      <h2>Series</h2>
+      <Carousel id="carouselExampleSeries" interval={null}>
+        {generateCarouselChunks('Series', 30, 6)} {/* 6 items per chunk for this carousel */}
+      </Carousel>
+    </Container>
   );
-}
+};
 
 export default Home;
