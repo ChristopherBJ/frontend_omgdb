@@ -4,11 +4,11 @@ import '../styles/Home.css'; // Import the custom CSS
 
 const Home = () => {
   // Function to generate carousel boxes dynamically
-  const generateBoxes = (prefix, start, end) => {
+  const generateBoxes = (prefix, start, end, colSize = 2) => {
     let boxes = [];
     for (let i = start; i <= end; i++) {
       boxes.push(
-        <Col key={i} xs={12} sm={6} md={2} className="mb-3">
+        <Col key={i} xs={12} sm={6} md={colSize} className="mb-3">
           <div className="carousel-box">
             {prefix} {i}
           </div>
@@ -18,13 +18,27 @@ const Home = () => {
     return boxes;
   };
 
-  // Logic to generate the carousel blocks in chunks of 6 items
-  const generateCarouselChunks = (prefix, totalItems, itemsPerChunk) => {
+  // Logic to generate overlapping chunks for Featured Today
+  const generateFeaturedChunks = (prefix, totalItems) => {
+    const chunks = [];
+    for (let i = 1; i <= totalItems - 1; i++) {
+      const chunkItems = generateBoxes(prefix, i, i + 1, 6); // Always pick the current and next item
+      chunks.push(
+        <Carousel.Item key={i}>
+          <Row>{chunkItems}</Row>
+        </Carousel.Item>
+      );
+    }
+    return chunks;
+  };
+
+  // Logic to generate the carousel blocks in chunks of items (default for other carousels)
+  const generateCarouselChunks = (prefix, totalItems, itemsPerChunk, colSize = 2) => {
     const chunks = [];
     for (let i = 0; i < totalItems; i += itemsPerChunk) {
       const start = i + 1;
       const end = Math.min(i + itemsPerChunk, totalItems);
-      const chunkItems = generateBoxes(prefix, start, end);
+      const chunkItems = generateBoxes(prefix, start, end, colSize);
       chunks.push(
         <Carousel.Item key={i}>
           <Row>{chunkItems}</Row>
@@ -36,10 +50,10 @@ const Home = () => {
 
   return (
     <Container>
-      {/* Featured Today Carousel (2 items per chunk) */}
+      {/* Featured Today Carousel */}
       <h2>Featured Today</h2>
       <Carousel id="carouselExampleFeatured" interval={null}>
-        {generateCarouselChunks('Box', 8, 2)} {/* 2 items per chunk for Featured Today */}
+        {generateFeaturedChunks('Box', 8)} {/* 8 items, 1 at a time with overlap */}
       </Carousel>
 
       {/* Actors Carousel */}
