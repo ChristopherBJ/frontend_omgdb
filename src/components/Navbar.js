@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 function NavBar() {
 
   const navigate = useNavigate();
@@ -24,27 +25,35 @@ function NavBar() {
   }
 
   return (
-    <Navbar expand="lg">
-      <Container>
-        <Navbar.Brand href="/">
-          <Image className="Logo" src={Logo} alt="OMGDB Logo" />
-        </Navbar.Brand>
-        <NavDropdown title="Menu" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="/title">Movie</NavDropdown.Item>
-          <NavDropdown.Item href="/title">Series</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="/persons">Actors</NavDropdown.Item>
-        </NavDropdown>
-        <Form className="d-flex input-group me-2">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <Button variant="outline-dark" className='custom-button'>Search</Button>
-          </Form>
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link onClick={handleLogout}>Log out</Nav.Link>
+    <Navbar expand="lg" className='navbar-expand-lg'>
+      <Container fluid>
+        <Nav pullLeft className='d-flex'>
+          <Navbar.Brand href="/">
+            <Image className="Logo" src={Logo} alt="OMGDB Logo" />
+          </Navbar.Brand>
+
+          <NavDropdown title="Menu" className="cusnav">
+            <NavDropdown.Item href="/title">Movie</NavDropdown.Item>
+            <NavDropdown.Item href="/title">Series</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="/persons">Actors</NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+        <Form className="d-flex input-group me-2 small-searchbar">
+          <Form.Control
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <Button variant="outline-dark" className='custom-button'>Search</Button>
+        </Form>
+        <Nav pullRight>
+          <Navbar.Toggle className='hamburger'/>
+          <Navbar.Collapse >
+            <Nav.Link href="/" className='cusnavRight'>Home</Nav.Link>
+            <Nav.Link onClick={handleLogout} className='cusnavRight'>Log out</Nav.Link>
+          </Navbar.Collapse>
+        </Nav>
       </Container>
     </Navbar>
 

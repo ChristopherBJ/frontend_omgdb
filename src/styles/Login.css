@@ -1,0 +1,20 @@
+@import './colorstyles.css';
+
+.login-container {
+  background: linear-gradient(120deg,var(--custom-color1),var(--custom-color2));
+    height: 100vh;
+overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: var(--custom-color3);
+    min-max-width: 20%;
+    max-width: 20%;
+    height: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
