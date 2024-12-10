@@ -22,6 +22,8 @@ function NavBar() {
     localStorage.removeItem('isLoggedIn');
 
     navigate('/login');
+    window.location.reload();
+    
   }
 
   return (
