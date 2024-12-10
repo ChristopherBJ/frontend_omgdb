@@ -1,3 +1,5 @@
+@import './colorstyles.css';
+
 .navbar {
     width: 100%;
     height: 100%;
@@ -12,7 +14,7 @@
 }
 
 .custom-button {
-  background-color: #fadb61;
+  background-color: var(--custom-color1);
   border-color: #fadb61;
   color: #000; /* Ensure text is readable */
 }
