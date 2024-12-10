@@ -39,7 +39,7 @@ const Home = () => {
       {/* Featured Today Carousel (2 items per chunk) */}
       <h2>Featured Today</h2>
       <Carousel id="carouselExampleFeatured" interval={null}>
-        {generateCarouselChunks('Box', 2, 2)} {/* 2 items per chunk for Featured Today */}
+        {generateCarouselChunks('Box', 8, 2)} {/* 2 items per chunk for Featured Today */}
       </Carousel>
 
       {/* Actors Carousel */}

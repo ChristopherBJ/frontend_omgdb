@@ -14,9 +14,24 @@
   padding: 10px 0;
 }
 
+/* Arrows */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: #333;
+  background-image: none;
+  border: solid rgb(0, 0, 0);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.carousel-control-prev-icon {
+  transform: rotate(135deg); /* Left arrow */
+}
+
+.carousel-control-next-icon {
+  position: relative;
+  transform: rotate(-45deg); /* Right arrow */
 }
 
 h2 {
