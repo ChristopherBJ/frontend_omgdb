@@ -1,7 +1,65 @@
 .home {
-    text-align: center;
-    background-color: #333;
-    color: white;
-    padding: 10%;
-  
-  }
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10%;
+
+}
+
+.featured {
+  color: #fadb61;
+  font-size: 2.5rem;
+  text-align : left;
+}
+
+.carousel-container {
+  position: relative; /* To position arrows relative to the container */
+  width: 50%; /* Half the width of the page */
+  overflow: hidden; /* Hide the overflow of the carousel */
+}
+
+.carousel-items {
+  display: flex; /* Arrange the items in a row */
+  width: 400%; /* Take up the full width for all boxes to be placed in a row */
+}
+
+.box {
+  width: 50%; /* Each box takes up 50% of the carousel container (2 boxes visible at a time) */
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  height: 200px;
+}
+
+/* Position the carousel controls (arrows) outside the visible area */
+.carousel-controls {
+  position: absolute;
+  top: 50%; /* Vertically center the arrows */
+  width: 100%; /* Full width to cover the carousel container */
+  display: flex;
+  justify-content: space-between; /* Align the arrows to the sides */
+  transform: translateY(-50%); /* Vertically center the arrows */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* Ensure arrows are above the carousel content */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.carousel-control-prev:disabled,
+.carousel-control-next:disabled {
+  background: rgba(0, 0, 0, 0.2); /* Lighter background when disabled */
+  cursor: not-allowed;
+}
