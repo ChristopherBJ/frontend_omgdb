@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
 
@@ -23,19 +23,23 @@ function Login({ onLogin }) {
     return (
       <div className='login-container'>
         <Form onSubmit={handleLogin} className='login-box'> 
+          <h1 className='header'>Login</h1>
           <Form.Group controlId="formBasicEmail" >
-            <Form.Label >Email address</Form.Label>
+            <FloatingLabel className="text-area" label="Email address">
+            
             <Form.Control type="email" placeholder="Enter email" value={email} onChange={(event) => setEmail(event.target.value)} />
+            </FloatingLabel>
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
     
           <Form.Group  controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+          <FloatingLabel className="text-area" label="Password">
             <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+            </FloatingLabel>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button  className="sub-button" variant="primary" type="submit">
             Login
           </Button>
         </Form>
