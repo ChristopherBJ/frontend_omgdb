@@ -10,7 +10,7 @@ function Title() {
   const [user, setUser] = useState([]);
   useEffect(() => {
     const mytoken = process.env.REACT_APP_MY_TOKEN;
-    if (!mytoken) {
+    if (mytoken) {
       console.log('Token found');
     const headers ={'Authorization': `Bearer ${mytoken}`};
       fetch('https://localhost/api/user', {headers})
