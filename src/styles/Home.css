@@ -36,8 +36,9 @@
 
 h2 {
   margin-top: 40px;
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
+  color: var(--custom-color5);
 }
 
 @media (max-width: 576px) {
