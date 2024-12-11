@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
 
 function Login({ onLogin }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState([]);
+  const [password, setPassword] = useState([]);
   const navigate = useNavigate();
+
+
+
+
 
   // Function to handle form submission
   const handleLogin = (event) => {
@@ -26,7 +30,7 @@ function Login({ onLogin }) {
       } else if (!email) {
         alert('Please fill email field');
         return;
-      } 
+      }
     }
 
 
