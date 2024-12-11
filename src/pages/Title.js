@@ -7,14 +7,22 @@ import { useEffect, useState } from 'react'
 
 function Title() {
 
-/*
+  const [user, setUser] = useState([]);
   useEffect(() => {
-      fetch('https://localhost/api/user')
+    const mytoken = process.env.REACT_APP_MY_TOKEN;
+    if (!mytoken) {
+      console.log('Token found');
+    const headers ={'Authorization': `Bearer ${mytoken}`};
+      fetch('https://localhost/api/user', {headers})
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => console.log(data))
+        
+    } else {
+      console.log('No token found');
+    }
     }, 
     []);
-*/
+
 
   
 
