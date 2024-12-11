@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -10,32 +10,49 @@ function Login({ onLogin }) {
   const navigate = useNavigate();
 
 
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    const mytoken = process.env.REACT_APP_MY_TOKEN;
+    if (mytoken) {
+      console.log('Token found');
+      const headers = { 'Authorization': `Bearer ${mytoken}` };
+      fetch('https://localhost/api/user/login', { headers })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .then(data => setUser(data))
 
-
+    } else {
+      console.log('No token found');
+    }
+  },
+    []);
 
   // Function to handle form submission
   const handleLogin = (event) => {
     event.preventDefault(); // Prevent page reload
 
-
-
-    if (!email || password.length < 8) {
-
-      if (!email && password.length < 8) {
-        alert('Please fill all fields');
-        return;
-      } else if (password.length < 8) {
-        alert('Password must be at least 8 characters long');
-        return;
-      } else if (!email) {
-        alert('Please fill email field');
-        return;
+    
+        if (!email || password.length < 8) {
+    
+          if (!email && password.length < 8) {
+            alert('Please fill all fields');
+            return;
+          } else if (password.length < 8) {
+            alert('Password must be at least 8 characters long');
+            return;
+          } else if (!email) {
+            alert('Please fill email field');
+            return;
+          }
+        }
+        if (user.email === email && user.password === password) {
+          onLogin(); // Update login state
+          navigate('/'); // Navigate to the home page
+      } else {
+          alert('Invalid email or password'); // Show error message
       }
-    }
-
-
-    onLogin(); // Update login state
-    navigate('/'); // Navigate to the home page
+  
+    
   };
 
   return (
