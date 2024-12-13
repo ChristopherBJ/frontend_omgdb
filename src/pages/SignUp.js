@@ -10,6 +10,7 @@ function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState(""); // For displaying errors
     const [success, setSuccess] = useState(""); // For success messages
+    const [isSuccess, setIsSuccess] = useState(false); // Track success state
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,6 +40,7 @@ function SignUp() {
             if (response.ok) {
                 const res = await response.json();
                 setSuccess("Account created successfully! You can now log in.");
+                setIsSuccess(true);
                 setName("");
                 setEmail("");
                 setPassword("");
@@ -55,9 +57,11 @@ function SignUp() {
 
     return (
         <div className="login-container">
-            <Form onSubmit={handleSubmit} className="login-box">
+            <div className="login-box">
+            {!isSuccess ? (
+                <Form onSubmit={handleSubmit}>
                 <h1 className="header">Sign up</h1>
-
+                
                 {/* Name Input Field */}
                 <Form.Group controlId="formBasicName">
                     <FloatingLabel className="text-area" label="Full name">
@@ -122,12 +126,7 @@ function SignUp() {
                     </Form.Text>
                 </Form.Group>
 
-                {/* Success Message */}
-                {success && (
-                    <p className="success-text" >
-                        {success} <a href="/login">Click here to log in.</a>
-                    </p>
-                )}
+             
 
                 {/* Error Message */}
                 {error && <p className="error-text">{error}</p>}
@@ -139,7 +138,17 @@ function SignUp() {
 
                 {/* Link to login */}
                 <a href="/login">Already a member?</a>
+           
             </Form>
+             ) : (
+                // Show success message if successful
+                <div className="success-message">
+                  <p className="success-text">
+                    {success} <a href="/login">Click here to log in.</a>
+                  </p>
+                </div>
+              )}
+              </div>
         </div>
     );
 }
