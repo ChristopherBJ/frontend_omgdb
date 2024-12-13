@@ -10,6 +10,8 @@ import Profile from './pages/Profile';
 import Persons from './pages/Persons';
 import Title from './pages/Title';
 import NoMatch from './pages/NoMatch';
+import SignUp from "./pages/SignUp";
+
 
 
 
@@ -21,7 +23,7 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/login" element={<Login />} />
-
+            <Route path="/signup" element={<SignUp />} />
             {/* Protected Routes */}
             <Route element={<PrivateRoute />}>
               {/* Shared Layout for Protected Routes */}

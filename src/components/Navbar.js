@@ -54,6 +54,7 @@ function NavBar() {
           <Navbar.Collapse >
             <Nav.Link href="/" className='cusnavRight'>Home</Nav.Link>
             <Nav.Link onClick={handleLogout} className='cusnavRight'>Log out</Nav.Link>
+            <h3>Name of user</h3>
           </Navbar.Collapse>
         </Nav>
       </Container>

@@ -1,6 +1,9 @@
 import { useContext, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Taken inspiration from https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5 and modified to suit the project
+
+
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -17,7 +20,7 @@ const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const res = await response.json();
-        setUser({ id: res.id }); // Assuming the response contains user ID
+        setUser({ id: res.id }); 
         setToken(res.token);
         localStorage.setItem("site", res.token);
         navigate("/");
@@ -27,7 +30,7 @@ const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to login. Please check your credentials.");
+      //alert("Failed to login. Please check your credentials.");
     }
   };
 
