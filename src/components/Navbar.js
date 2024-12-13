@@ -10,6 +10,7 @@ import Image from 'react-bootstrap/Image';
 import Logo from '../assets/Omg_main_logo.svg';
 import '../styles/Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "./AuthProvider";
 
 
 
@@ -17,14 +18,13 @@ import { useNavigate } from 'react-router-dom';
 function NavBar() {
 
   const navigate = useNavigate();
+  const { logOut } = useAuth(); // Access logOut from AuthProvider
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-
-    navigate('/login');
-    window.location.reload();
-    
-  }
+    logOut(); // Call the logOut function from AuthContext
+    navigate("/login"); // Navigate to the login page (optional since it's already in logOut)
+    window.location.reload(); // Optional: Forces a page reload to reset state
+  };
 
   return (
     <Navbar expand="lg" className='navbar-expand-lg'>

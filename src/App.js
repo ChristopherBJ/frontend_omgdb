@@ -1,6 +1,8 @@
-import {useState, useEffect} from 'react';
-import './App.css';
-import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom'
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import AuthProvider from "./components/AuthProvider";
+import Login from "./pages/Login";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -8,41 +10,49 @@ import Profile from './pages/Profile';
 import Persons from './pages/Persons';
 import Title from './pages/Title';
 import NoMatch from './pages/NoMatch';
-import Login from './pages/Login';
-  
+
+
+
 function App() {
-const [isLoggedIn, setIsLoggedIn] = useState(() => {
-  return localStorage.getItem('isLoggedIn') === 'true';
-});
-
-useEffect(() => {
-  localStorage.setItem('isLoggedIn', isLoggedIn);
-}, [isLoggedIn]);
-
   return (
-    <BrowserRouter>
-{isLoggedIn && <Navbar />}
-    <Routes>
-      {isLoggedIn ? (
-        <>
-      <Route path="/" element={<Home />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/persons" element={<Persons />} />
-      <Route path="/title" element={<Title />} />
-      <Route path="*" element={<NoMatch/>} />
-      </>
-      ) : (
-        <>
-        <Route path="/login" element={<Login onLogin={()=>setIsLoggedIn(true)} />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-        </>
-        
-      )
-      }
-    </Routes>
-    {isLoggedIn && <Footer />}
-  </BrowserRouter>
+    <div className="App">
+      <Router>
+        <AuthProvider>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/login" element={<Login />} />
+
+            {/* Protected Routes */}
+            <Route element={<PrivateRoute />}>
+              {/* Shared Layout for Protected Routes */}
+              <Route
+                element={
+                  <>
+                    <Navbar />
+                    <Outlet />
+                    <Footer />
+                  </>
+                }
+              >
+                <Route path="/" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/persons" element={<Persons />} />
+                <Route path="/title" element={<Title />} />
+              </Route>
+            </Route>
+
+            {/* Catch-All Route */}
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </div>
   );
 }
 
 export default App;
+
+
+
+
+  
