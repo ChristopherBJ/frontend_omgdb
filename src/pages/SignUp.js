@@ -39,7 +39,7 @@ function SignUp() {
 
             if (response.ok) {
                 const res = await response.json();
-                setSuccess("Account created successfully! You can now log in.");
+                setSuccess( `${name}! Your account was created successfully! You can now login by clicking the link`);
                 setIsSuccess(true);
                 setName("");
                 setEmail("");
@@ -144,7 +144,7 @@ function SignUp() {
                 // Show success message if successful
                 <div className="success-message">
                   <p className="success-text">
-                    {success} <a href="/login">Click here to log in.</a>
+                    Welcome {success} <a href="/login">here.</a>
                   </p>
                 </div>
               )}
