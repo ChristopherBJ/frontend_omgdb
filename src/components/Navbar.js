@@ -22,8 +22,8 @@ function NavBar() {
 
   const handleLogout = () => {
     logOut(); // Call the logOut function from AuthContext
-    navigate("/login"); // Navigate to the login page (optional since it's already in logOut)
-    window.location.reload(); // Optional: Forces a page reload to reset state
+    //navigate("/login"); // Navigate to the login page (optional since it's already in logOut)
+    //window.location.reload(); // Optional: Forces a page reload to reset state
   };
 
   return (

@@ -26,6 +26,11 @@ function Login() {
     <div className="login-container">
       <Form onSubmit={handleSubmit} className="login-box">
         <h1 className="header">Login</h1>
+        <div className="text-container">
+          <Form.Text className="text-muted">
+            Type your email address
+          </Form.Text>
+        </div>
         <Form.Group controlId="formBasicEmail">
         <FloatingLabel className="text-area" label="Email address">
               <Form.Control
@@ -36,10 +41,12 @@ function Login() {
                 required
               />
             </FloatingLabel>
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
+        <div className="text-container">
+          <Form.Text className="text-muted">
+            Type your password
+          </Form.Text>
+        </div>
         <Form.Group controlId="formBasicPassword">
           <FloatingLabel className="text-area" label="Password">
             <Form.Control
@@ -52,6 +59,7 @@ function Login() {
           </FloatingLabel>
         </Form.Group>
 
+        {error && <p className="error">{error}</p>}
         <Button className="sub-button" variant="primary" type="submit">
           Login
         </Button>

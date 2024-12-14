@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Taken inspiration from https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5 and modified to suit the project
@@ -38,8 +38,25 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     setToken("");
     localStorage.removeItem("site");
+    localStorage.setItem("logout-event", Date.now());
     navigate("/login");
   };
+
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "logout-event") {
+        setUser(null);
+        setToken("");
+        navigate("/login");
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [navigate]);
 
   return (
     <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
