@@ -18,7 +18,7 @@ import { useAuth } from "./AuthProvider";
 function NavBar() {
 
   const navigate = useNavigate();
-  const { logOut } = useAuth(); // Access logOut from AuthProvider
+  const { user, logOut } = useAuth(); // Access logOut from AuthProvider
 
   const handleLogout = () => {
     logOut(); // Call the logOut function from AuthContext
@@ -29,7 +29,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className='navbar-expand-lg'>
       <Container fluid>
-        <Nav pullLeft className='d-flex'>
+        <Nav className='d-flex'>
           <Navbar.Brand href="/">
             <Image className="Logo" src={Logo} alt="OMGDB Logo" />
           </Navbar.Brand>
@@ -49,12 +49,13 @@ function NavBar() {
           />
           <Button variant="outline-dark" className='custom-button'>Search</Button>
         </Form>
-        <Nav pullRight>
-          <Navbar.Toggle className='hamburger'/>
+        <Nav>
+          <Navbar.Toggle className='hamburger' />
           <Navbar.Collapse >
             <Nav.Link href="/" className='cusnavRight'>Home</Nav.Link>
-            <Nav.Link onClick={handleLogout} className='cusnavRight'>Log out</Nav.Link>
-            <h3>Name of user</h3>
+            <NavDropdown title={user.name} className='cusnav'>
+              <Nav.Link onClick={handleLogout} className='logout-link'>Log out</Nav.Link>
+            </NavDropdown>
           </Navbar.Collapse>
         </Nav>
       </Container>

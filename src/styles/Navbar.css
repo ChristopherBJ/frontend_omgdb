@@ -23,6 +23,11 @@
   /* Ensure it overrides any default styles */
 }
 
+.nav-link.logout-link {
+  color: black !important;
+  /* Ensure text is readable */
+}
+
 .dropdown-item {
   color: #000;
   /* Ensure text is readable */

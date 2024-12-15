@@ -3,6 +3,8 @@ import { useAuth } from "../components/AuthProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import '../styles/Login.css';
+import { ReactComponent as Logo } from '../assets/Omg_main_logo.svg';
+
 
 
 
@@ -11,12 +13,14 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
     try {
       await loginAction(email, password);
+      
     } catch (err) {
       setError(err.message); // Set error message from loginAction
     }
@@ -25,6 +29,7 @@ function Login() {
   return (
     <div className="login-container">
       <Form onSubmit={handleSubmit} className="login-box">
+      <Logo className="Logo1"/>
         <h1 className="header">Login</h1>
         <div className="text-container">
           <Form.Text className="text-muted">
@@ -64,6 +69,7 @@ function Login() {
           Login
         </Button>
         <a href="/signup">Not a member?</a>
+        
       </Form>
     </div>
   );

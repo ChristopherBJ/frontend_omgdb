@@ -11,6 +11,7 @@ import Persons from './pages/Persons';
 import Title from './pages/Title';
 import NoMatch from './pages/NoMatch';
 import SignUp from "./pages/SignUp";
+import './App.css';
 
 
 

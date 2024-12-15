@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import '../styles/Login.css';
+import { ReactComponent as Logo } from '../assets/Omg_main_logo.svg';
+
 
 function SignUp() {
     const [name, setName] = useState("");
@@ -82,6 +84,7 @@ function SignUp() {
             <div className="login-box">
                 {!isSuccess ? (
                     <Form onSubmit={handleSubmit}>
+                        <Logo className="Logo1"/>
                         <h1 className="header">Sign up</h1>
 
                         {/* Name Input Field */}

@@ -86,4 +86,16 @@
     
     margin-top: 2rem !important;
   }
+
+  .Logo1 {
+    background-color: rgba(34, 34, 34, 0.575);
+    border-radius: 6px;
+    box-shadow: 0 0.5rem 1rem rgb(75, 75, 75);
+
+    height: 50px;
+    width: 200px;
+    margin: auto;
+    display: block;
+
+  }
   
