@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
     if (!token || !storedUser) {
-      console.error("No token found");
+      
       return false;
     }
 
@@ -70,14 +70,14 @@ const AuthProvider = ({ children }) => {
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
-        console.log("Token validated successfully:", token);
+        
 
         return true;
       } else {
         return false;
       }
     } catch (err) {
-      console.error("Token validation failed:", err);
+      
       return false;
     }
   };
