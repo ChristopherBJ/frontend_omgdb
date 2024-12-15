@@ -12,6 +12,7 @@ import Title from './pages/Title';
 import NoMatch from './pages/NoMatch';
 import SignUp from "./pages/SignUp";
 import './App.css';
+import TopWeekly from "./components/TopWeekly";
 
 
 
@@ -41,6 +42,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/persons" element={<Persons />} />
                 <Route path="/title" element={<Title />} />
+                <Route path="/top-weekly" element={<TopWeekly/>} />
               </Route>
             </Route>
 
