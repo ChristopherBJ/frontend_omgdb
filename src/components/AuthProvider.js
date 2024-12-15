@@ -97,8 +97,6 @@ const AuthProvider = ({ children }) => {
         if (!isValid) {
           logOut();
         }
-      } else {
-        logOut();
       }
     };
   
