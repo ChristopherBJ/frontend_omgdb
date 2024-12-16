@@ -1,6 +1,7 @@
 import React from 'react';
 import { Carousel, Container, Row, Col, Spinner } from 'react-bootstrap';
 import '../styles/Home.css'; // Import the custom CSS
+import TopWeekly from '../components/TopWeekly';
 
 const Home = () => {
   // Function to generate carousel boxes dynamically
@@ -49,12 +50,13 @@ const Home = () => {
   };
 
   return (
+
+    // Show top weekly movies and series
+    
+
     <Container>
       {/* Featured Today Carousel */}
-      <h2>Featured Today</h2>
-      <Carousel id="carouselExampleFeatured" interval={null}>
-        {generateFeaturedChunks('Box', 8)} {/* 8 items, 1 at a time with overlap */}
-      </Carousel>
+    <TopWeekly />
 
       {/* Actors Carousel */}
       <h2>Actors</h2>

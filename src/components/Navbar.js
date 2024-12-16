@@ -9,21 +9,19 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Image from 'react-bootstrap/Image';
 import Logo from '../assets/Omg_main_logo.svg';
 import '../styles/Navbar.css';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from "./AuthProvider";
+
 
 
 
 
 function NavBar() {
 
-  const navigate = useNavigate();
+  
   const { user, logOut } = useAuth(); // Access logOut from AuthProvider
 
   const handleLogout = () => {
     logOut(); // Call the logOut function from AuthContext
-    //navigate("/login"); // Navigate to the login page (optional since it's already in logOut)
-    //window.location.reload(); // Optional: Forces a page reload to reset state
   };
 
   return (
@@ -39,6 +37,7 @@ function NavBar() {
             <NavDropdown.Item href="/title">Series</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/persons">Actors</NavDropdown.Item>
+            <NavDropdown.Item href="/top-weekly">Top Weekly</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form className="d-flex input-group me-2 small-searchbar">

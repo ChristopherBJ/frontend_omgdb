@@ -11,6 +11,9 @@ import Persons from './pages/Persons';
 import Title from './pages/Title';
 import NoMatch from './pages/NoMatch';
 import SignUp from "./pages/SignUp";
+import MoviePage from "./pages/MoviePage";
+import EpisodePage from "./pages/EpisodePage";
+import SeriesPage from "./pages/SeriesPage";
 import './App.css';
 import TopWeekly from "./components/TopWeekly";
 
@@ -42,6 +45,9 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/persons" element={<Persons />} />
                 <Route path="/title" element={<Title />} />
+                <Route path="/movie/:titleId" element={<MoviePage />} />
+                <Route path="/episode/:titleId" element={<EpisodePage />} />
+                <Route path="/series/:titleId" element={<SeriesPage />} />
                 <Route path="/top-weekly" element={<TopWeekly/>} />
               </Route>
             </Route>
