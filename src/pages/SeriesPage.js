@@ -89,7 +89,7 @@ const MoviePage = () => {
 
         <div className="details">
           <p><strong>IMDb Rating:</strong> {titleData.imdbRating || 'N/A'} </p>
-          <p><strong>Average Rating:</strong> {titleData.averageRating || 'N/A'}</p>
+          <p><strong>OMGDB Rating:</strong> {titleData.averageRating || 'N/A'}</p>
           <p><strong>Popularity:</strong> {titleData.popularity || 'N/A'}</p>
           <p>
             <strong>Genres:</strong>{' '}
@@ -110,7 +110,7 @@ const MoviePage = () => {
             <strong>Actors:</strong>{' '}
             {actorData.map((actor, index) => (
               <span key={index}>
-                <a className='links' href={`/actor/${actor.id}`}>
+                <a className='links' href={`/person/${actor.personId}`}>
                   {actor.name}
                 </a>{' '}
                 as {actor.character}

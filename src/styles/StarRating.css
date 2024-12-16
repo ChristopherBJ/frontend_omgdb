@@ -1,0 +1,17 @@
+@import './colorstyles.css';
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+    font-size: 30px;
+  }
+  
+  .star {
+    cursor: pointer;
+    color: lightgray;
+  }
+  
+  .star.filled {
+    color: var(--custom-color2);
+  }
+  
