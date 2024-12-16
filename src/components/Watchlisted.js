@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Carousel, Button, Card} from 'react-bootstrap'; // Import Carousel from React Bootstrap
+import { Carousel, Button, Card } from 'react-bootstrap';
 import Logo from '../assets/Omg_main_logo.svg';
-import '../styles/Watchlisted.css'; // Import the custom CSS
+import '../styles/Watchlisted.css';
 import { useNavigate } from 'react-router-dom';
 
-const Watchlisted = ({ token, watchlistData }) => {
+const Watchlisted = ({ token }) => {
     const [watchlistStatus, setWatchlistStatus] = useState('');
     const [data, setData] = useState([]);
     const navigate = useNavigate();
@@ -12,53 +12,52 @@ const Watchlisted = ({ token, watchlistData }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://localhost/api/user/watchlist', {
+                const response = await fetch('https://localhost/api/user/watchlist/movie', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`,
                     },
-                    body: JSON.stringify(watchlistData),
                 });
 
                 if (response.ok) {
-                    setWatchlistStatus('Watchlisted'); // Change status to "Watchlisted" upon successful addition
+                    const responseData = await response.json();
+                    console.log("API Response Data:", responseData);
+                    // Format data if necessary
+                    const formattedData = responseData.map((item) => ({
+                        title: item.movieName || 'Unknown',
+                        titleId: item.id || 'N/A',
+                        titleType: item.type || 'movie',
+                        imdbRating: item.rating || 'N/A',
+                        poster: item.posterPath || Logo, // Fallback poster
+                    }));
+                    setData(formattedData);
+                    setWatchlistStatus('Watchlisted');
                 } else {
                     const errorData = await response.json();
-                    setWatchlistStatus(`Failed to add to watchlist: ${errorData.message || response.statusText}`);
+                    console.error('API Error:', errorData);
+                    setWatchlistStatus(`Failed to fetch data: ${errorData.message || response.statusText}`);
                 }
             } catch (error) {
-                console.error('Error adding movie to watchlist:', error);
-                setWatchlistStatus('Failed to add to watchlist.');
+                console.error('Error fetching watchlist data:', error);
+                setWatchlistStatus('Failed to fetch data.');
             }
         };
 
         fetchData();
-    }, [token, watchlistData]);
+    }, [token]);
 
     if (data.length === 0) {
-        return <div>Loading...</div>; // Show loading message if data is still being fetched
+        return <div>Loading your watchlist...</div>; // Show loading or empty watchlist message
     }
 
-    // Helper function to group data into chunks of 4
-    const chunkData = (data, chunkSize) => {
-        const chunks = [];
-        for (let i = 0; i < data.length; i += chunkSize) {
-            chunks.push(data.slice(i, i + chunkSize));
-        }
-        return chunks;
-    };
-
-    const groupedData = chunkData(data, 5); // Group data into chunks of 4
-
-    // Function to handle image click
     const handleClick = (titleType, titleId) => {
         if (titleType === 'movie') {
-            navigate(`/movie/${titleId}`); // Navigate to the title page
+            navigate(`/movie/${titleId}`);
         } else if (titleType === 'series') {
-            navigate(`/series/${titleId}`); // Navigate to the series page
+            navigate(`/series/${titleId}`);
         } else if (titleType === 'episode') {
-            navigate(`/episode/${titleId}`); // Navigate to the episode page
+            navigate(`/episode/${titleId}`);
         }
     };
 
@@ -66,41 +65,25 @@ const Watchlisted = ({ token, watchlistData }) => {
         <div>
             <h2>Watchlisted</h2>
             <Carousel indicators={false} interval={null} className='carousel'>
-                {groupedData.map((group, groupIndex) => (
-                    <Carousel.Item key={groupIndex}>
+                {data.map((item, index) => (
+                    <Carousel.Item key={index}>
                         <div className="d-flex justify-content-center">
-                            {group.map((item, index) => (
-                                <div key={index} className="poster-item mx-2">
-                                    <Card >
-                                        <div className="poster-container">
-                                            <button className="poster-button" onClick={() => alert(`Watchlist ${item.title}`)}>
-                                                Watchlist
-                                            </button>
-                                            {item.poster ? (
-                                                <Card.Img className='poster-image'
-                                                    variant="top"
-                                                    src={item.poster}
-                                                    alt={item.title}
-                                                    onClick={() => handleClick(item.titleType, item.titleId)}
-                                                />
-                                            ) : (
-                                                <Card.Img className='default-image'
-                                                    variant="top"
-                                                    src={Logo} // Fallback image in case poster is missing
-                                                    alt="Poster not available"
-                                                    onClick={() => handleClick(item.titleType, item.titleId)}
-                                                />
-                                            )}
-                                        </div>
-                                        <Card.Body>
-                                            <p className="text-center">IMDb rating: {item.imdbRating}</p>
-                                            <h6 className="text-center mt-2">{item.title}</h6>
-
-                                            <Button className='rate-button'>Rate</Button>
-                                        </Card.Body>
-                                    </Card>
+                            <Card className="poster-item mx-2">
+                                <div className="poster-container">
+                                    <Card.Img
+                                        className='poster-image'
+                                        variant="top"
+                                        src={item.poster}
+                                        alt={item.title}
+                                        onClick={() => handleClick(item.titleType, item.titleId)}
+                                    />
                                 </div>
-                            ))}
+                                <Card.Body>
+                                    <p className="text-center">IMDb rating: {item.imdbRating}</p>
+                                    <h6 className="text-center mt-2">{item.title}</h6>
+                                    <Button className='rate-button'>Rate</Button>
+                                </Card.Body>
+                            </Card>
                         </div>
                     </Carousel.Item>
                 ))}
