@@ -140,9 +140,31 @@
     border-radius: 4px;
     cursor: pointer;
     padding: 6px 12px;
+    
+    
 }
 
 .submit-button:hover {
+    background-color: var(--custom-color3);
+    color: black;
+}
+.btn-primary:active {
+    --bs-btn-active-bg: var(--custom-color3);
+  }
+
+
+
+.remove-button {
+    background-color: var(--custom-color2);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px 12px;
+    margin-left: 6px;
+}
+
+.remove-button:hover {
     background-color: var(--custom-color3);
     color: black;
 }

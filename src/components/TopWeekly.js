@@ -21,6 +21,7 @@ const TopWeekly = () => {
     if (data.length === 0) {
         return <div>Loading...</div>; // Show loading message if data is still being fetched
     }
+    
 
     // Helper function to group data into chunks of 4
     const chunkData = (data, chunkSize) => {
