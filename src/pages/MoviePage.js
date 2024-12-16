@@ -219,8 +219,16 @@ const MoviePage = () => {
       </div>
 
       <div className="content">
+       
         <div className="poster">
-          <img src={titleData.poster || Logo} alt={titleData.title} />
+            {/* Watchlist Section */}
+         
+            <button className="watchlist-button" onClick={handleAddToWatchlist}>
+              {watchlistStatus || 'Add to Watchlist'}
+            </button>
+         
+          <img className='posterImg' src={titleData.poster || Logo} alt={titleData.title} />
+          
         </div>
 
         <div className="details">
@@ -265,12 +273,7 @@ const MoviePage = () => {
 
             {ratingStatus && <p>{ratingStatus}</p>}
 
-            {/* Watchlist Section */}
-            <div className="watchlist">
-            <Button className="watchlist-button" onClick={handleAddToWatchlist}>
-              {watchlistStatus || 'Add to Watchlist'}
-            </Button>
-          </div>
+           
           </div>
         </div>
       </div>

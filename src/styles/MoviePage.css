@@ -7,9 +7,9 @@
     margin-top: 10px;
     padding: 20px;
     background-color: #1a1a1a;
-    /* IMDb-style dark background */
+
     color: #e6e6e6;
-    /* Light text for contrast */
+
     font-family: 'Arial', sans-serif;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -31,8 +31,9 @@
 
 .buttonBack:hover {
     background-color: var(--custom-color3);
-    /* Slightly darker yellow */
+
 }
+
 
 /* Header styles */
 .header h1 {
@@ -54,11 +55,36 @@
 }
 
 /* Poster image */
-.poster img {
+.posterImg {
+    position: relative;
     width: 300px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     object-fit: cover;
+}
+
+.poster {
+    position: relative;
+}
+
+/* Watchlist button styling */
+.watchlist-button {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 2% 4%;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+}
+
+.watchlist-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--custom-color2);
 }
 
 /* Details section */
@@ -74,7 +100,7 @@
 
 .details p strong {
     color: var(--custom-color2);
-    /* IMDb yellow for emphasis */
+
 }
 
 .details p:not(:last-child) {
@@ -90,10 +116,13 @@
         align-items: center;
     }
 
-    .poster img {
+
+
+    .posterImg {
         width: 100%;
         max-width: 300px;
     }
+
 }
 
 .links {
@@ -114,20 +143,6 @@
 }
 
 .submit-button:hover {
-    background-color: var(--custom-color3);
-    color: black;
-}
-
-.watchlist-button {
-    background-color: var(--custom-color2);
-    color: black;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 6px 12px;
-}
-
-.watchlist-button:hover {
     background-color: var(--custom-color3);
     color: black;
 }
