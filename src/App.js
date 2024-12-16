@@ -18,8 +18,8 @@ import GenrePage from "./pages/GenrePage";
 import PersonPage from "./pages/PersonPage";
 import './App.css';
 import TopWeekly from "./components/TopWeekly";
-
-
+import PopluarCelebs from "./components/PopularCelebs";
+import Watchlisted from "./components/Watchlisted";
 
 
 function App() {
@@ -53,6 +53,8 @@ function App() {
                 <Route path="/genre/:genrename" element={<GenrePage />} />
                 <Route path="/person/:personId" element={<PersonPage />} />
                 <Route path="/top-weekly" element={<TopWeekly/>} />
+                <Route path="/popularcelebs" element={<PopluarCelebs/>} />
+                <Route path="/watchlist" element={<Watchlisted/>} />
               </Route>
             </Route>
 

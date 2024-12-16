@@ -2,6 +2,8 @@ import React from 'react';
 import { Carousel, Container, Row, Col, Spinner } from 'react-bootstrap';
 import '../styles/Home.css'; // Import the custom CSS
 import TopWeekly from '../components/TopWeekly';
+import PopluarCelebs from '../components/PopularCelebs';
+import Watchlisted from '../components/Watchlisted';
 
 const Home = () => {
   // Function to generate carousel boxes dynamically
@@ -59,16 +61,11 @@ const Home = () => {
     <TopWeekly />
 
       {/* Actors Carousel */}
-      <h2>Actors</h2>
-      <Carousel id="carouselExampleActors" interval={null}>
-        {generateCarouselChunks('Actor', 60, 6)} {/* 6 items per chunk for this carousel */}
-      </Carousel>
+    
+    <PopluarCelebs />
 
       {/* Movies Carousel */}
-      <h2>Movies</h2>
-      <Carousel id="carouselExampleMovies" interval={null}>
-        {generateCarouselChunks('Movie', 30, 6)} {/* 6 items per chunk for this carousel */}
-      </Carousel>
+    <Watchlisted />
 
       {/* Series Carousel */}
       <h2>Series</h2>
