@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel, Button, Card, Modal } from 'react-bootstrap';
 import Logo from '../assets/Omg_main_logo.svg';
-import '../styles/TopWeekly.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../components/AuthProvider";
 import StarRating from "../components/StarRating";
+import '../styles/TopWeekly.css';
 
 const TopWeekly = () => {
     const [data, setData] = useState([]); // Store fetched data
@@ -570,7 +570,6 @@ const TopWeekly = () => {
                          <Button className='modal-button' onClick={() => handleUpdateRating(rating)}>
                          Update Rating
                        </Button>
-
                         <Button className='modal-remove-button' onClick={handleRemoveRating}>
                             Remove Rating
                         </Button>
