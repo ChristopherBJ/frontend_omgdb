@@ -1,112 +1,123 @@
 import React, { useState, useEffect } from 'react';
-import { Carousel, Button, Card} from 'react-bootstrap'; // Import Carousel from React Bootstrap
-import Logo from '../assets/Omg_main_logo.svg';
-import '../styles/Watchlisted.css'; // Import the custom CSS
+import { Button, Carousel } from 'react-bootstrap';
+import { useAuth } from "../components/AuthProvider";
 import { useNavigate } from 'react-router-dom';
+import '../styles/Watchlist.css';
 
-const Watchlisted = ({ token, watchlistData }) => {
-    const [watchlistStatus, setWatchlistStatus] = useState('');
-    const [data, setData] = useState([]);
-    const navigate = useNavigate();
+const Watchlist = () => {
+  const [watchlistMovies, setWatchlistMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [watchlistStatus, setWatchlistStatus] = useState('');
+  const [fetched, setFetched] = useState(false); // Track if watchlist is fetched
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://localhost/api/user/watchlist', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
-                    },
-                    body: JSON.stringify(watchlistData),
-                });
+  const { user, token } = useAuth();
+  const navigate = useNavigate();
 
-                if (response.ok) {
-                    setWatchlistStatus('Watchlisted'); // Change status to "Watchlisted" upon successful addition
-                } else {
-                    const errorData = await response.json();
-                    setWatchlistStatus(`Failed to add to watchlist: ${errorData.message || response.statusText}`);
-                }
-            } catch (error) {
-                console.error('Error adding movie to watchlist:', error);
-                setWatchlistStatus('Failed to add to watchlist.');
-            }
-        };
+  // Fetch watchlist for the user
+  const fetchWatchlist = async () => {
+    if (!user || !token || fetched) return;
 
-        fetchData();
-    }, [token, watchlistData]);
+    try {
+      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
 
-    if (data.length === 0) {
-        return <div>Loading...</div>; // Show loading message if data is still being fetched
+      if (response.ok) {
+        const data = await response.json();
+        setWatchlistMovies(data); // Set watchlist movies
+      } else {
+        console.error('Failed to fetch watchlist');
+      }
+    } catch (error) {
+      console.error('Error fetching watchlist:', error);
+    } finally {
+      setLoading(false);
+      setFetched(true); // Mark as fetched
+    }
+  };
+
+  // Remove movie from the watchlist
+  const removeFromWatchlist = async (movieId) => {
+    if (!user || !token) {
+      setWatchlistStatus('You need to be logged in to remove from the watchlist.');
+      return;
     }
 
-    // Helper function to group data into chunks of 4
-    const chunkData = (data, chunkSize) => {
-        const chunks = [];
-        for (let i = 0; i < data.length; i += chunkSize) {
-            chunks.push(data.slice(i, i + chunkSize));
-        }
-        return chunks;
-    };
+    try {
+      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/movie/${movieId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
 
-    const groupedData = chunkData(data, 5); // Group data into chunks of 4
+      if (response.ok) {
+        setWatchlistStatus('Movie removed from watchlist');
+        setWatchlistMovies(prevMovies => prevMovies.filter(movie => movie.id !== movieId));
+      } else {
+        const errorData = await response.json();
+        setWatchlistStatus(`Failed to remove from watchlist: ${errorData.message || response.statusText}`);
+      }
+    } catch (error) {
+      console.error('Error removing movie from watchlist:', error);
+    }
+  };
 
-    // Function to handle image click
-    const handleClick = (titleType, titleId) => {
-        if (titleType === 'movie') {
-            navigate(`/movie/${titleId}`); // Navigate to the title page
-        } else if (titleType === 'series') {
-            navigate(`/series/${titleId}`); // Navigate to the series page
-        } else if (titleType === 'episode') {
-            navigate(`/episode/${titleId}`); // Navigate to the episode page
-        }
-    };
+  // Navigate to MoviePage when clicking on a movie
+  const goToMoviePage = (movieId) => {
+    navigate(`/movie/${movieId}`);
+  };
 
-    return (
-        <div>
-            <h2>Watchlisted</h2>
-            <Carousel indicators={false} interval={null} className='carousel'>
-                {groupedData.map((group, groupIndex) => (
-                    <Carousel.Item key={groupIndex}>
-                        <div className="d-flex justify-content-center">
-                            {group.map((item, index) => (
-                                <div key={index} className="poster-item mx-2">
-                                    <Card >
-                                        <div className="poster-container">
-                                            <button className="poster-button" onClick={() => alert(`Watchlist ${item.title}`)}>
-                                                Watchlist
-                                            </button>
-                                            {item.poster ? (
-                                                <Card.Img className='poster-image'
-                                                    variant="top"
-                                                    src={item.poster}
-                                                    alt={item.title}
-                                                    onClick={() => handleClick(item.titleType, item.titleId)}
-                                                />
-                                            ) : (
-                                                <Card.Img className='default-image'
-                                                    variant="top"
-                                                    src={Logo} // Fallback image in case poster is missing
-                                                    alt="Poster not available"
-                                                    onClick={() => handleClick(item.titleType, item.titleId)}
-                                                />
-                                            )}
-                                        </div>
-                                        <Card.Body>
-                                            <p className="text-center">IMDb rating: {item.imdbRating}</p>
-                                            <h6 className="text-center mt-2">{item.title}</h6>
+  useEffect(() => {
+    fetchWatchlist();
+  }, [user, token, fetched]);
 
-                                            <Button className='rate-button'>Rate</Button>
-                                        </Card.Body>
-                                    </Card>
-                                </div>
-                            ))}
-                        </div>
-                    </Carousel.Item>
-                ))}
-            </Carousel>
-        </div>
-    );
+  if (loading) {
+    return <div>Loading watchlist...</div>;
+  }
+
+  return (
+    <div className="watchlist-container">
+      <h2>Your Watchlist</h2>
+
+      {watchlistMovies.length === 0 ? (
+        <p>Your watchlist is empty.</p>
+      ) : (
+        <Carousel className="watchlist-carousel" interval={null}>
+          {watchlistMovies.map((movie) => (
+            <Carousel.Item key={movie.id}>
+              <div className="carousel-item-content">
+                <img
+                  className="d-block w-100 carousel-image"
+                  src={movie.poster || 'https://via.placeholder.com/150'}
+                  alt={movie.title}
+                />
+                <Carousel.Caption>
+                  <h3>{movie.title}</h3>
+                  <p>{movie.releaseYear}</p>
+                  <div className="carousel-actions">
+                    <Button onClick={() => goToMoviePage(movie.id)} variant="primary">
+                      View Movie
+                    </Button>
+                    <Button onClick={() => removeFromWatchlist(movie.id)} variant="danger">
+                      Remove from Watchlist
+                    </Button>
+                  </div>
+                </Carousel.Caption>
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      )}
+
+      {watchlistStatus && <p>{watchlistStatus}</p>}
+    </div>
+  );
 };
 
-export default Watchlisted;
+export default Watchlist;
