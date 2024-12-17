@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Carousel } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import { useAuth } from "../components/AuthProvider";
 import { useNavigate } from 'react-router-dom';
 import '../styles/Watchlist.css';
 
 const Watchlist = () => {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [watchlistStatus, setWatchlistStatus] = useState('');
   const [watchlistStatus, setWatchlistStatus] = useState('');
+  const [loading, setLoading] = useState(true); // Track loading state
   const [fetched, setFetched] = useState(false); // Track if watchlist is fetched
-
   const { user, token } = useAuth();
   const navigate = useNavigate();
 
@@ -40,33 +40,16 @@ const Watchlist = () => {
     }
   };
 
-  // Remove movie from the watchlist
-  const removeFromWatchlist = async (movieId) => {
-    if (!user || !token) {
-      setWatchlistStatus('You need to be logged in to remove from the watchlist.');
-      return;
+  // Helper function to chunk data into groups of 5
+  const chunkData = (data, chunkSize) => {
+    const chunks = [];
+    for (let i = 0; i < data.length; i += chunkSize) {
+      chunks.push(data.slice(i, i + chunkSize));
     }
-
-    try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/movie/${movieId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        setWatchlistStatus('Movie removed from watchlist');
-        setWatchlistMovies(prevMovies => prevMovies.filter(movie => movie.id !== movieId));
-      } else {
-        const errorData = await response.json();
-        setWatchlistStatus(`Failed to remove from watchlist: ${errorData.message || response.statusText}`);
-      }
-    } catch (error) {
-      console.error('Error removing movie from watchlist:', error);
-    }
+    return chunks;
   };
+
+  const groupedData = chunkData(watchlistMovies, 5);
 
   // Navigate to MoviePage when clicking on a movie
   const goToMoviePage = (movieId) => {
@@ -82,42 +65,31 @@ const Watchlist = () => {
   }
 
   return (
-    <div className="watchlist-container">
-      <h2>Your Watchlist</h2>
-
-      {watchlistMovies.length === 0 ? (
-        <p>Your watchlist is empty.</p>
-      ) : (
-        <Carousel className="watchlist-carousel" interval={null}>
-          {watchlistMovies.map((movie) => (
-            <Carousel.Item key={movie.id}>
-              <div className="carousel-item-content">
-                <img
-                  className="d-block w-100 carousel-image"
-                  src={movie.poster || 'https://via.placeholder.com/150'}
-                  alt={movie.title}
-                />
-                <Carousel.Caption>
-                  <h3>{movie.title}</h3>
-                  <p>{movie.releaseYear}</p>
-                  <div className="carousel-actions">
-                    <Button onClick={() => goToMoviePage(movie.id)} variant="primary">
-                      View Movie
-                    </Button>
-                    <Button onClick={() => removeFromWatchlist(movie.id)} variant="danger">
-                      Remove from Watchlist
-                    </Button>
+    <div className="watchlist">
+      <h1>Watchlist</h1>
+        <Carousel>
+          {groupedData.map((group, index) => (
+            <Carousel.Item key={index}>
+              <div className="watchlist-group">
+                {group.map((movie) => (
+                  <div
+                    key={movie.id}
+                    className="watchlist-movie"
+                    onClick={() => goToMoviePage(movie.id)}
+                  >
+                    <img
+                      src={movie.poster}
+                      alt={movie.title}
+                      className="watchlist-movie-poster"
+                    />
+                    <div className="watchlist-movie-title">{movie.title}</div>
                   </div>
-                </Carousel.Caption>
+                ))}
               </div>
             </Carousel.Item>
           ))}
         </Carousel>
-      )}
-
-      {watchlistStatus && <p>{watchlistStatus}</p>}
     </div>
   );
-};
-
+}
 export default Watchlist;
