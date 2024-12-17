@@ -277,6 +277,7 @@ const TopWeekly = () => {
                                         </div>
                                         <Card.Body>
                                             <p className="text-center">IMDb rating: {item.imdbRating}</p>
+                                            <p className="text-center">OMGDB rating: {item.averageRating}</p>
                                             <h6 className="text-center mt-2">{item.title}</h6>
 
                                         </Card.Body>
