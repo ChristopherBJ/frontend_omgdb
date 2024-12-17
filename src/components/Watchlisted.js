@@ -89,7 +89,6 @@ const Watchlist = () => {
             </Carousel.Item>
           ))}
         </Carousel>
-      )}
     </div>
   );
 }
