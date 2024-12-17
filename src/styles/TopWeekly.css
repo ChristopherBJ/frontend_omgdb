@@ -18,7 +18,7 @@
     border-radius: 8px;
     transition: transform 0.3s ease;
     z-index: 2;
-cursor: pointer;
+    cursor: pointer;
 }
 
 
@@ -36,7 +36,7 @@ cursor: pointer;
     .poster-image {
         height: 160px;
     }
-   
+
 
 }
 
@@ -62,7 +62,7 @@ cursor: pointer;
     top: 0px;
     left: 0px;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
     border: none;
     padding: 2% 4%;
@@ -76,27 +76,48 @@ cursor: pointer;
     color: var(--custom-color2);
 }
 
+.poster-button-watchlisted {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--custom-color2);
+    border: none;
+    padding: 2% 4%;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+}
+
+.poster-button-watchlisted:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
 .carousel-control-prev {
     border-radius: 8px;
-    
+
     width: 4%;
     bottom: 0;
-    
-    transform: translateX(-100%) ;
+
+    transform: translateX(-100%);
     z-index: 3;
 }
+
 .carousel-control-next {
     border-radius: 8px;
-    
+
     width: 4%;
     bottom: 0;
     transform: translateX(100%);
     z-index: 3;
 }
 
-.carousel-control-prev:hover, .carousel-control-next:hover {
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
     background-color: rgba(0, 0, 0, 0.5);
-    
+
 }
 
 .rate-button {
@@ -104,7 +125,7 @@ cursor: pointer;
     top: 0px;
     right: 0px;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
     border: none;
     padding: 2% 4%;
@@ -118,4 +139,82 @@ cursor: pointer;
 .rate-button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--custom-color2);
+}
+
+.rate-button-rated {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--custom-color2);
+    border: none;
+    padding: 2% 4%;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    cursor: pointer;
+}
+
+.rate-button-rated:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.poster-card {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+
+
+.modal-view-header,
+.modal-view-footer,
+.modal-view-body {
+    background-color: #4a4a4a;
+    color: white;
+    border-color: #2a2a2a;
+}
+
+
+
+.modal-button {
+    background-color: var(--custom-color2);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px 12px;
+
+
+}
+
+.modal-button:hover {
+    background-color: var(--custom-color3);
+    color: black;
+}
+
+.modal-button:active {
+    --bs-btn-active-bg: var(--custom-color3);
+}
+
+.modal-remove-button {
+    background-color: var(--custom-color1);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px 12px;
+
+
+}
+
+.modal-remove-button:hover {
+    background-color: var(--custom-color4);
+    color: black;
+}
+
+.modal-remove-button:active {
+    --bs-btn-active-bg: var(--custom-color4);
 }
