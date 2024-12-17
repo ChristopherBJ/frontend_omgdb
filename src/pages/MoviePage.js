@@ -17,7 +17,7 @@ const MoviePage = () => {
   const [ratingStatus, setRatingStatus] = useState(null); // Feedback message
   const [watchlistStatus, setWatchlistStatus] = useState(null); // Feedback message
   const [watchlistFetched, setWatchlistFetched] = useState(false); // Track if watchlist was fetched
-  const [watchlist, setWatchlist] = useState(0); // User's watchlist
+
 
 
   const navigate = useNavigate();
