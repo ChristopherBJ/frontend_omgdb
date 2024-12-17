@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Carousel, Card } from 'react-bootstrap';
 import Logo from '../assets/Omg_main_logo.svg';
@@ -9,6 +10,7 @@ const PopularCelebs = () => {
     const navigate = useNavigate();
     const APIKey = process.env.REACT_APP_API_KEY;
 
+    // First useEffect: Fetch the list of people
     useEffect(() => {
         fetch('https://localhost/api/person?pageSize=30')
             .then((response) => response.json())
@@ -18,9 +20,9 @@ const PopularCelebs = () => {
             })
             .catch((error) => console.error('Error fetching data:', error));
     }, []);
-
+    // Second useEffect: Fetch posters after the data has been set
     useEffect(() => {
-        if (data.length > 0) {
+        if (data.length > 0 && !data.some(person => person.poster !== undefined)) {
             const fetchPosters = async () => {
                 const updatedData = await Promise.all(
                     data.map(async (person) => {
@@ -49,18 +51,18 @@ const PopularCelebs = () => {
     
                 console.log("Updated Data with Posters:", updatedData);
     
-                setData(updatedData);
+                setData(updatedData); // Update data with posters
             };
     
             fetchPosters();
         }
-    }, [data]);
-    
+    }, [data]); // Make sure this useEffect only runs when `data` is set
 
     if (data.length === 0) {
         return <div>Loading...</div>;
     }
 
+    // Helper function to chunk data into groups of 5
     const chunkData = (data, chunkSize) => {
         const chunks = [];
         for (let i = 0; i < data.length; i += chunkSize) {
@@ -90,7 +92,7 @@ const PopularCelebs = () => {
                                                 <Card.Img
                                                     className="poster-image"
                                                     variant="top"
-                                                    src={`https://image.tmdb.org/t/p/w500${item.poster}`}
+                                                    src={item.poster}
                                                     alt={item.name}
                                                     onClick={() => handleClick(item.id)}
                                                 />
