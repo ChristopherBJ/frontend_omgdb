@@ -68,10 +68,7 @@ const Home = () => {
     <Watchlisted />
 
       {/* Series Carousel */}
-      <h2>Series</h2>
-      <Carousel id="carouselExampleSeries" interval={null}>
-        {generateCarouselChunks('Series', 30, 6)} {/* 6 items per chunk for this carousel */}
-      </Carousel>
+
     </Container>
   );
 };

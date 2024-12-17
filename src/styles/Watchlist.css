@@ -1,0 +1,39 @@
+/* Watchlist carousel styling */
+.watchlist-carousel .carousel-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .watchlist-carousel .carousel-item .carousel-image {
+    width: 18%; /* Adjust this to fit 5 items per row */
+    margin: 0 1%; /* Space between the images */
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .carousel-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .carousel-item-content {
+    position: relative;
+    text-align: center;
+  }
+  
+  .carousel-item .carousel-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Add responsive styles for smaller screen sizes */
+  @media (max-width: 768px) {
+    .watchlist-carousel .carousel-item .carousel-image {
+      width: 40%; /* 2 items per row for smaller screens */
+    }
+  }
+  

@@ -1,31 +1,115 @@
+/* Footer Styling */
 .footer {
-    width: 100%;
-    height: 50%;
-    background-color: #161616;
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-  }
+  width: 100%;
+  background-color: #161616;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  color: white;
+}
 
+/* Watchlist Section */
 .footer .watchlist {
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    font-family: Verdana;
-    font-style: italic;
-    letter-spacing: 2px;
-    padding-left: 102px;
-  }
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Verdana;
+  font-style: italic;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  .footer .arTitles {
-    font-size: 12px;
-  }
+/* Recently Viewed Section */
+.recently-viewed {
+  margin-bottom: 20px;
+}
+
+.recently-viewed h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.recently-viewed-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.recently-viewed-item {
+  width: 18%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recently-viewed-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.recently-viewed-item:hover .recently-viewed-image {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.recently-viewed-item p {
+  margin-top: 5px;
+  font-size: 1em;
+  color: white;
+}
 
 .footer .footnote {
-    color: grey;
-    text-align: center;
-    font-size: 12px;
-    position: absolute;
-    bottom: 0;
-    margin-left: 50%;
+  font-size: 1em;
+  color: grey;
+  position: absolute;
+  bottom: 0;
+  margin-top: 20px;
+}
+
+/* Hover Effect for Recently Viewed Images */
+.recently-viewed-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .recently-viewed-item {
+    width: 45%;
+  }
+
+  .recently-viewed h3 {
+    font-size: 1.2em;
+  }
+
+  .footer {
+    padding: 10px;
+  }
+
+  .footer .footnote {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .recently-viewed-item {
+    width: 80%;
+  }
+
+  .recently-viewed h3 {
+    font-size: 1em;
+  }
+
+  .footer .footnote {
+    font-size: 0.8em;
+  }
 }

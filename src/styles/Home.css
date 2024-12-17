@@ -4,7 +4,8 @@
   border: 1px solid #ddd;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 100px;
+  height: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,4 +47,28 @@ h2 {
     font-size: 12px; /* Adjust font size for smaller screens */
     padding: 10px;
   }
+}
+
+
+/*remove the carousel indicators*/
+.carousel-indicators {
+  display: none;
+}
+
+/*Scaling the carousel images*/
+.carousel-item img {
+  width: 100%;
+  height: 20%;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/*Scaling the carousel images*/
+.carousel-item ::content img {
+  width: 100%;
+  height: 20%;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
 }
