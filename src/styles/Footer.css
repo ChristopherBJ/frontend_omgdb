@@ -7,12 +7,11 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  position: relative;
   color: white;
 }
 
 /* Watchlist Section */
-.footer .watchlist {
+.watchlist {
   font-weight: bold;
   font-size: 18px;
   font-family: Verdana;
@@ -67,18 +66,11 @@
   color: white;
 }
 
-.footer .footnote {
+.footnote {
   font-size: 1em;
   color: grey;
-  position: absolute;
-  bottom: 0;
   margin-top: 20px;
-}
-
-/* Hover Effect for Recently Viewed Images */
-.recently-viewed-item img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 /* Mobile Responsiveness */
@@ -87,15 +79,11 @@
     width: 45%;
   }
 
-  .recently-viewed h3 {
-    font-size: 1.2em;
-  }
-
   .footer {
     padding: 10px;
   }
 
-  .footer .footnote {
+  .footnote {
     font-size: 0.9em;
   }
 }
@@ -105,11 +93,7 @@
     width: 80%;
   }
 
-  .recently-viewed h3 {
-    font-size: 1em;
-  }
-
-  .footer .footnote {
+  .footnote {
     font-size: 0.8em;
   }
 }
