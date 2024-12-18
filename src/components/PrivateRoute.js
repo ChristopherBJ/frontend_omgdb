@@ -17,7 +17,7 @@ const PrivateRoute = () => {
     };
 
     checkToken();
-  }, [token, validateToken]);
+  }, [token]);
 
   if (isValid === null) {
     // Show loading indicator while token validation is in progress

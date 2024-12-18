@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
  
+ 
 
   const loginAction = async (email, password) => {
     try {
@@ -119,6 +120,7 @@ const AuthProvider = ({ children }) => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, [navigate]);
+
 
   return (
     <AuthContext.Provider value={{ token, user, loginAction, logOut, validateToken }}>

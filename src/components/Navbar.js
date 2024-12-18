@@ -52,7 +52,7 @@ function NavBar() {
           <Navbar.Toggle className='hamburger' />
           <Navbar.Collapse >
             <Nav.Link href="/" className='cusnavRight'>Home</Nav.Link>
-            <NavDropdown title={user.name} className='cusnav'>
+            <NavDropdown title={user && user.name ? user.name : 'Guest'} className='cusnav'>
               <Nav.Link onClick={handleLogout} className='logout-link'>Log out</Nav.Link>
             </NavDropdown>
           </Navbar.Collapse>
