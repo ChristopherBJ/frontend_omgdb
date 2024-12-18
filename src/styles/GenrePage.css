@@ -1,0 +1,105 @@
+@import './colorstyles.css';
+
+.showGenrecontainer {
+    justify-content: center; /* Add space between arrows and slider */
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Prevent overflow from slider */
+  }
+
+  .genre-head {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .genre-line-setup {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .genre-title {
+    margin-bottom: 15px; /* Add some space between the titles and slider */
+    font-size: 24px;
+    font-weight: 600;
+    
+}
+  
+  .genre-slider {
+    display: flex;
+    max-width: 70%; /* Restrict slider to 70% of container width */
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* For Firefox */
+  }
+
+.genre-button {
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    background-color: var(--custom-color2);
+    border: none;
+    border-radius: 0;
+    height: 50px;
+  }
+  
+    .genre-button:hover {
+        background-color: var(--custom-color3);
+    }
+
+  .arrow-button {
+    height: 50px;
+    background-color: var(--custom-color2);
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-radius: 0;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .arrow-button:hover {
+    background-color: var(--custom-color3);
+  }
+  
+  .left-arrow {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .right-arrow {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .genre-slider {
+      max-width: 60%; /* Reduce slider width for smaller screens */
+    }
+  
+    .arrow-button {
+      min-width: 30px;
+      min-height: 30px;
+     
+    }
+  
+    .genre-button {
+      padding: 8px 16px;
+      min-height: 30px;
+    }
+  }
+  
