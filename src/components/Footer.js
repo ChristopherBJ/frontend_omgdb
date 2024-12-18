@@ -1,15 +1,21 @@
-import React from 'react'
+import React from 'react';
+import {Container} from 'react-bootstrap';
 import '../styles/Footer.css'
+import RecentlyViewed from './RecentlyViewed'
 
 function Footer() {
   return (
+    <Container>
     <div className='footer'>
       <div className='watchlist'>
         <h3>Recently Viewed</h3>
-        <p className='arTitles'>the array of recently viewed movies will be shown here</p>
+        
+        <RecentlyViewed />
+
       </div>
       <div className='footnote'>made by Group 7</div>
     </div>
+    </Container>
   )
 }
 
