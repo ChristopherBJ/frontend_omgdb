@@ -5,8 +5,8 @@ function Footer() {
   return (
     <div className='footer'>
       <div className='watchlist'>
-        <h3>Watchlist</h3>
-        <p className='arTitles'>the array of watchlist will be displayed here</p>
+        <h3>Recently Viewed</h3>
+        <p className='arTitles'>the array of recently viewed movies will be shown here</p>
       </div>
       <div className='footnote'>made by Group 7</div>
     </div>
