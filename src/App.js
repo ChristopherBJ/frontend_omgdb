@@ -50,6 +50,7 @@ function App() {
                 <Route path="/movie/:titleId" element={<MoviePage />} />
                 <Route path="/episode/:titleId" element={<EpisodePage />} />
                 <Route path="/series/:titleId" element={<SeriesPage />} />
+                <Route path="/genre" element={<GenrePage />} />
                 <Route path="/genre/:genrename" element={<GenrePage />} />
                 <Route path="/person/:personId" element={<PersonPage />} />
                 <Route path="/top-weekly" element={<TopWeekly/>} />
