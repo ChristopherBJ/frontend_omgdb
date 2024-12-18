@@ -77,7 +77,8 @@ docker compose -f docker-compose.yml --env-file .env up --build -d
 
 ### Folder Structure
 ```
-. ├── public
+.
+├── public
 │ ├── favicon.ico
 │ ├── index.html
 │ ├── logo192.png
