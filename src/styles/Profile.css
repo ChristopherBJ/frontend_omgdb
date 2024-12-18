@@ -95,29 +95,6 @@
     color: #fff;
 }
 
-.carousel-control-prev {
-  border-radius: 8px;
-  width: 4%;
-  bottom: 0;
-  left: 0; /* Adjusted to be closer to the left edge */
-  transform: translateX(0); /* Removed the translateX to keep it in place */
-  z-index: 3;
-}
-
-.carousel-control-next {
-  border-radius: 8px;
-  width: 4%;
-  bottom: 0;
-  right: 0; /* Adjusted to be closer to the right edge */
-  transform: translateX(0); /* Removed the translateX to keep it in place */
-  z-index: 3;
-}
-
-.carousel-control-prev:hover:hover,
-.carousel-control-next:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .rate-button {
     position: absolute;
     top: 0px;
