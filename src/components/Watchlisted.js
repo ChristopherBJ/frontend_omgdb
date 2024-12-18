@@ -52,10 +52,17 @@ const Watchlist = () => {
 
   const groupedData = chunkData(watchlistMovies, 5);
 
-  // Navigate to MoviePage when clicking on a movie
-  const handleClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
+//Navigation to the movie details page, Person details page, or TV show details page
+  const handleClick = (title_type, title_id) => {
+    if (title_type === 'movie') {
+      navigate(`/movie/${title_id}`);
+    } else if (title_type === 'series') {
+      navigate(`/series/${title_id}`);
+    } else if (title_type === 'episode') {
+      navigate(`/episode/${title_id}`);
+    }
   };
+
 
   useEffect(() => {
     fetchWatchlist();
@@ -82,7 +89,7 @@ const Watchlist = () => {
                                                   variant="top"
                                                   src={item.poster}
                                                   alt={item.name}
-                                                  onClick={() => handleClick(item.id)}
+                                                  onClick={() => handleClick(item.title_type, item.title_id)}
                                                   style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                               />
                                           ) : (
@@ -91,7 +98,7 @@ const Watchlist = () => {
                                                   variant="top"
                                                   src={Logo}
                                                   alt="Poster not available"
-                                                  onClick={() => handleClick(item.id)}
+                                                  onClick={() => handleClick(item.title_type, item.title_id)}
                                                   style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                               />
                                           )}
