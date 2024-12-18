@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Container, Row, Col, Spinner } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import '../styles/Home.css'; // Import the custom CSS
 import TopWeekly from '../components/TopWeekly';
 import PopluarCelebs from '../components/PopularCelebs';

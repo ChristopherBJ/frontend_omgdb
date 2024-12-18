@@ -53,6 +53,7 @@ function NavBar() {
           <Navbar.Collapse >
             <Nav.Link href="/" className='cusnavRight'>Home</Nav.Link>
             <NavDropdown title={user.name} className='cusnav'>
+              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
               <Nav.Link onClick={handleLogout} className='logout-link'>Log out</Nav.Link>
             </NavDropdown>
           </Navbar.Collapse>
