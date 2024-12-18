@@ -22,7 +22,7 @@ const TopWeekly = () => {
 
     // Fetch top weekly 
     useEffect(() => {
-        fetch('https://localhost/api/topweekly?pageSize=30&sortBy=imdbRating')
+        fetch('https://localhost/api/topweekly?pageSize=30')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data); // Check data structure
@@ -525,7 +525,7 @@ const TopWeekly = () => {
                                                     src={item.poster}
                                                     alt={item.title}
                                                     onClick={() => handleClick(item.titleType, item.titleId)}
-                                                    style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                 />
                                             ) : (
                                                 <Card.Img
@@ -534,7 +534,7 @@ const TopWeekly = () => {
                                                     src={Logo}
                                                     alt="Poster not available"
                                                     onClick={() => handleClick(item.titleType, item.titleId)}
-                                                    style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                 />
                                             )}
                                         </div>
