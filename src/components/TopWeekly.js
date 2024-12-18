@@ -182,6 +182,7 @@ const TopWeekly = () => {
                 ? `series/${itemId}`
                 : `episode/${itemId}`;
 
+        // Fetch the watchlist status for the item
         try {
             const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/${endpoint}`, {
                 method: 'GET',
@@ -390,7 +391,7 @@ const TopWeekly = () => {
             setRatingStatus('Error updating rating.');
         }
     };
-
+    // Fetch rating status for the item that the user interacts with
     const fetchRatingStatusForItem = async (itemId, titleType) => {
         if (!user || !token || fetchingStatusFor === itemId) return;
 

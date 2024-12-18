@@ -40,13 +40,13 @@ const EpisodePage = () => {
         if (!titleResponse.ok || !genreResponse.ok || !actorResponse.ok) {
           throw new Error('Failed to fetch data');
         }
-
+        // Parse the JSON data
         const [titleData, genreData, actorData] = await Promise.all([
           titleResponse.json(),
           genreResponse.json(),
           actorResponse.json(),
         ]);
-
+        // Set the state variables
         setTitleData(titleData);
         setGenreData(genreData);
         setActorData(actorData);
