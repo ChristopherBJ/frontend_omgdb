@@ -67,8 +67,8 @@ const GenrePage = () => {
     const groupedSeries = chunkData(series, 5); // Group series into chunks of 5
     const groupedEpisodes = chunkData(episodes, 5); // Group episodes into chunks of 5
 
-       // Handle click event
-       const handleClick = (titleType, itemId) => {
+    // Handle click event
+    const handleClick = (titleType, itemId) => {
         if (titleType === 'movie') {
             navigate(`/movie/${itemId}`);
         } else if (titleType === 'series') {
@@ -125,144 +125,146 @@ const GenrePage = () => {
             {/* Display lists of movies, series, and episodes */}
             {currentGenre && (
                 <div className="genre-details">
-                    <h2>Movies</h2>
-                    <Carousel indicators={false} interval={null} className="carousel">
-                        {groupedMovie.length > 0 ? (
-                            groupedMovie.map((group, groupIndex) => (
-                                <Carousel.Item key={groupIndex}>
-                                    <div className="d-flex justify-content-center">
-                                        {group.map((movie, index) => (
-                                            <div key={index} className="poster-item mx-2">
-                                                <Card className="poster-card">
-                                                    <div className="poster-container">
-                                                        {movie.poster ? (
-                                                            <Card.Img
-                                                                className="poster-image"
-                                                                variant="top"
-                                                                src={movie.poster}
-                                                                alt={movie.title}
-                                                                onClick={() => handleClick(navigate(`/movie/${movie.id}`))} // Update the selected genre
-                                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                                            />
-                                                        ) : (
-                                                            <Card.Img
-                                                                className="default-image"
-                                                                variant="top"
-                                                                src={Logo} // Use a default logo if no poster is available
-                                                                alt="Poster not available"
-                                                                onClick={() => handleClick(navigate(`/movie/${movie.id}`))} 
-                                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                    <Card.Body>
-                                                        <p className="text-center">IMDb rating: {movie.imdbRating}</p>
-                                                        <p className="text-center">Title: {movie.title}</p>
-                                                    </Card.Body>
-                                                </Card>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </Carousel.Item>
-                            ))
-                        ) : (
-                            <p>No movies found for this genre.</p>
-                        )}
-                    </Carousel>
-
-
-                    <h2>Series</h2>
-                    <Carousel indicators={false} interval={null} className="carousel">
-                        {groupedSeries.length > 0 ? (
-                            groupedSeries.map((group, groupIndex) => (
-                                <Carousel.Item key={groupIndex}>
-                                    <div className="d-flex justify-content-center">
-                                        {group.map((series, index) => (
-                                            <div key={index} className="poster-item mx-2">
-                                                <Card className="poster-card">
-                                                    <div className="poster-container">
-                                                        {series.poster ? (
-                                                            <Card.Img
-                                                                className="poster-image"
-                                                                variant="top"
-                                                                src={series.poster}
-                                                                alt={series.title}
-                                                                onClick={() => handleClick(navigate(`/series/${series.id}`))}
-                                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                                            />
-                                                        ) : (
-                                                            <Card.Img
-                                                                className="default-image"
-                                                                variant="top"
-                                                                src={Logo} // Use a default logo if no poster is available
-                                                                alt="Poster not available"
-                                                                onClick={() => handleClick(navigate(`/series/${series.id}`))}
-                                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                    <Card.Body>
-                                                        <p className="text-center">IMDb rating: {series.imdbRating}</p>
-                                                        <p className="text-center">Title: {series.title}</p>
-                                                    </Card.Body>
-                                                </Card>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </Carousel.Item>
-                            ))
-                        ) : (
-                            <p>No series found for this genre.</p>
-                        )}
-                    </Carousel>
-
-                    <h2>Episodes</h2>
-                    <Carousel indicators={false} interval={null} className="carousel">
-                        {groupedEpisodes.length > 0 ? (
-                            groupedEpisodes.map((group, groupIndex) => (
-                                <Carousel.Item key={groupIndex}>
-                                    <div className="d-flex justify-content-center">
-                                        {group.map((episodes, index) => (
-                                            <div key={index} className="poster-item mx-2">
-                                                <Card className="poster-card">
-                                                    <div className="poster-container">
-                                                        {episodes.poster ? (
-                                                            <Card.Img
-                                                                className="poster-image"
-                                                                variant="top"
-                                                                src={episodes.poster}
-                                                                alt={episodes.title}
-                                                                onClick={() => handleClick(navigate(`/episode/${episodes.id}`))}
-                                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                                            />
-                                                        ) : (
-                                                            <Card.Img
-                                                                className="default-image"
-                                                                variant="top"
-                                                                src={Logo} // Use a default logo if no poster is available
-                                                                alt="Poster not available"
-                                                                onClick={() => handleClick(navigate(`/episode/${episodes.id}`))}
-                                                                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                    <Card.Body>
-                                                        <p className="text-center">IMDb rating: {episodes.imdbRating}</p>
-                                                        <p className="text-center">OMGDB rating: {episodes.averageRating}</p>
-                                                        <p className="text-center">Season: {episodes.season}</p>
-                                                        <p className="text-center">Title: {episodes.title}</p>
-                                                    </Card.Body>
-                                                </Card>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </Carousel.Item>
-                            ))
-                        ) : (
-                            <p>No episodes found for this genre.</p>
-                        )}
-                    </Carousel>
-
+                    
+                        <h2>Movies</h2>
+                        <Carousel indicators={false} interval={null} className="carousel">
+                            {groupedMovie.length > 0 ? (
+                                groupedMovie.map((group, groupIndex) => (
+                                    <Carousel.Item key={groupIndex}>
+                                        <div className="d-flex justify-content-center">
+                                            {group.map((movie, index) => (
+                                                <div key={index} className="poster-item mx-2">
+                                                    <Card className="poster-card">
+                                                        <div className="poster-container">
+                                                            {movie.poster ? (
+                                                                <Card.Img
+                                                                    className="poster-image"
+                                                                    variant="top"
+                                                                    src={movie.poster}
+                                                                    alt={movie.title}
+                                                                    onClick={() => handleClick(navigate(`/movie/${movie.id}`))} // Update the selected genre
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                                />
+                                                            ) : (
+                                                                <Card.Img
+                                                                    className="default-image"
+                                                                    variant="top"
+                                                                    src={Logo} // Use a default logo if no poster is available
+                                                                    alt="Poster not available"
+                                                                    onClick={() => handleClick(navigate(`/movie/${movie.id}`))}
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                        <Card.Body>
+                                                            <p className="text-center">IMDb rating: {movie.imdbRating}</p>
+                                                            <p className="text-center">Title: {movie.title}</p>
+                                                        </Card.Body>
+                                                    </Card>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </Carousel.Item>
+                                ))
+                            ) : (
+                                <p>No movies found for this genre.</p>
+                            )}
+                        </Carousel>
+                    
+                    <div className="genre-movie">
+                        <h2>Series</h2>
+                        <Carousel indicators={false} interval={null} className="carousel">
+                            {groupedSeries.length > 0 ? (
+                                groupedSeries.map((group, groupIndex) => (
+                                    <Carousel.Item key={groupIndex}>
+                                        <div className="d-flex justify-content-center">
+                                            {group.map((series, index) => (
+                                                <div key={index} className="poster-item mx-2">
+                                                    <Card className="poster-card">
+                                                        <div className="poster-container">
+                                                            {series.poster ? (
+                                                                <Card.Img
+                                                                    className="poster-image"
+                                                                    variant="top"
+                                                                    src={series.poster}
+                                                                    alt={series.title}
+                                                                    onClick={() => handleClick(navigate(`/series/${series.id}`))}
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                                />
+                                                            ) : (
+                                                                <Card.Img
+                                                                    className="default-image"
+                                                                    variant="top"
+                                                                    src={Logo} // Use a default logo if no poster is available
+                                                                    alt="Poster not available"
+                                                                    onClick={() => handleClick(navigate(`/series/${series.id}`))}
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                        <Card.Body>
+                                                            <p className="text-center">IMDb rating: {series.imdbRating}</p>
+                                                            <p className="text-center">Title: {series.title}</p>
+                                                        </Card.Body>
+                                                    </Card>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </Carousel.Item>
+                                ))
+                            ) : (
+                                <p>No series found for this genre.</p>
+                            )}
+                        </Carousel>
+                    </div>
+                    <div className="genre-movie">
+                        <h2>Episodes</h2>
+                        <Carousel indicators={false} interval={null} className="carousel">
+                            {groupedEpisodes.length > 0 ? (
+                                groupedEpisodes.map((group, groupIndex) => (
+                                    <Carousel.Item key={groupIndex}>
+                                        <div className="d-flex justify-content-center">
+                                            {group.map((episodes, index) => (
+                                                <div key={index} className="poster-item mx-2">
+                                                    <Card className="poster-card">
+                                                        <div className="poster-container">
+                                                            {episodes.poster ? (
+                                                                <Card.Img
+                                                                    className="poster-image"
+                                                                    variant="top"
+                                                                    src={episodes.poster}
+                                                                    alt={episodes.title}
+                                                                    onClick={() => handleClick(navigate(`/episode/${episodes.id}`))}
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                                />
+                                                            ) : (
+                                                                <Card.Img
+                                                                    className="default-image"
+                                                                    variant="top"
+                                                                    src={Logo} // Use a default logo if no poster is available
+                                                                    alt="Poster not available"
+                                                                    onClick={() => handleClick(navigate(`/episode/${episodes.id}`))}
+                                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                        <Card.Body>
+                                                            <p className="text-center">IMDb rating: {episodes.imdbRating}</p>
+                                                            <p className="text-center">OMGDB rating: {episodes.averageRating}</p>
+                                                            <p className="text-center">Season: {episodes.season}</p>
+                                                            <p className="text-center">Title: {episodes.title}</p>
+                                                        </Card.Body>
+                                                    </Card>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </Carousel.Item>
+                                ))
+                            ) : (
+                                <p>No episodes found for this genre.</p>
+                            )}
+                        </Carousel>
+                    </div>
                 </div>
             )}
         </div>

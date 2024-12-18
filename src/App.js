@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthProvider from "./components/AuthProvider";
@@ -23,6 +23,11 @@ import Watchlisted from "./components/Watchlisted";
 
 
 function App() {
+  useEffect(() => {
+    // Set background color
+    document.body.style.backgroundColor = "#333";
+  }, []);
+
   return (
     <div className="App">
       <Router>
