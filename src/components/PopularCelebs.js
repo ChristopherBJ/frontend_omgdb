@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel, Card } from 'react-bootstrap';
 import Logo from '../assets/Omg_main_logo.svg';
-import '../styles/PopularCelebs.css';
+import '../styles/TopWeekly.css';
 import { useNavigate } from 'react-router-dom';
 
 const PopularCelebs = () => {
@@ -86,7 +86,7 @@ const PopularCelebs = () => {
                         <div className="d-flex justify-content-center">
                             {group.map((item, index) => (
                                 <div key={index} className="poster-item mx-2">
-                                    <Card>
+                                    <Card className="poster-card">
                                         <div className="poster-container">
                                             {item.poster ? (
                                                 <Card.Img
@@ -95,6 +95,7 @@ const PopularCelebs = () => {
                                                     src={item.poster}
                                                     alt={item.name}
                                                     onClick={() => handleClick(item.id)}
+                                                    style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                                 />
                                             ) : (
                                                 <Card.Img
@@ -103,6 +104,7 @@ const PopularCelebs = () => {
                                                     src={Logo}
                                                     alt="Poster not available"
                                                     onClick={() => handleClick(item.id)}
+                                                    style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                                 />
                                             )}
                                         </div>

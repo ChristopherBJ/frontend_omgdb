@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Card } from 'react-bootstrap';
 import { useAuth } from "../components/AuthProvider";
 import { useNavigate } from 'react-router-dom';
-import '../styles/Watchlist.css';
+import '../styles/TopWeekly.css';
+import Logo from '../assets/Omg_main_logo.svg';
 
 const Watchlist = () => {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
@@ -51,10 +52,17 @@ const Watchlist = () => {
 
   const groupedData = chunkData(watchlistMovies, 5);
 
-  // Navigate to MoviePage when clicking on a movie
-  const goToMoviePage = (movieId) => {
-    navigate(`/movie/${movieId}`);
+//Navigation to the movie details page, Person details page, or TV show details page
+  const handleClick = (title_type, title_id) => {
+    if (title_type === 'movie') {
+      navigate(`/movie/${title_id}`);
+    } else if (title_type === 'series') {
+      navigate(`/series/${title_id}`);
+    } else if (title_type === 'episode') {
+      navigate(`/episode/${title_id}`);
+    }
   };
+
 
   useEffect(() => {
     fetchWatchlist();
@@ -65,31 +73,49 @@ const Watchlist = () => {
   }
 
   return (
-    <div className="watchlist">
-      <h1>Watchlist</h1>
-        <Carousel>
-          {groupedData.map((group, index) => (
-            <Carousel.Item key={index}>
-              <div className="watchlist-group">
-                {group.map((movie) => (
-                  <div
-                    key={movie.id}
-                    className="watchlist-movie"
-                    onClick={() => goToMoviePage(movie.id)}
-                  >
-                    <img
-                      src={movie.poster}
-                      alt={movie.title}
-                      className="watchlist-movie-poster"
-                    />
-                    <div className="watchlist-movie-title">{movie.title}</div>
-                  </div>
-                ))}
-              </div>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-    </div>
+      <div>
+          <h2>Watchlist</h2>
+          <Carousel indicators={false} interval={null} className="carousel">
+              {groupedData.map((group, groupIndex) => (
+                  <Carousel.Item key={groupIndex}>
+                      <div className="d-flex justify-content-center">
+                          {group.map((item, index) => (
+                              <div key={index} className="poster-item mx-2">
+                                  <Card className="poster-card">
+                                      <div className="poster-container">
+                                          {item.poster ? (
+                                              <Card.Img
+                                                  className="poster-image"
+                                                  variant="top"
+                                                  src={item.poster}
+                                                  alt={item.name}
+                                                  onClick={() => handleClick(item.title_type, item.title_id)}
+                                                  style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                                              />
+                                          ) : (
+                                              <Card.Img
+                                                  className="default-image"
+                                                  variant="top"
+                                                  src={Logo}
+                                                  alt="Poster not available"
+                                                  onClick={() => handleClick(item.title_type, item.title_id)}
+                                                  style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                                              />
+                                          )}
+                                      </div>
+                                      <Card.Body>
+                                          <h6 className="text-center mt-2">{item.title}</h6>
+                                      </Card.Body>
+                                  </Card>
+                              </div>
+                          ))}
+                      </div>
+                  </Carousel.Item>
+              ))}
+          </Carousel>
+      </div>
   );
-}
+};
+
+
 export default Watchlist;

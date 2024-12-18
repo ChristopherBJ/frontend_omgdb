@@ -1,99 +1,31 @@
-/* Footer Styling */
 .footer {
   width: 100%;
+  height: 50%;
   background-color: #161616;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  color: white;
+  flex-direction: row;
+  position: absolute;
 }
 
-/* Watchlist Section */
-.watchlist {
+.footer .watchlist {
+  color: white;
   font-weight: bold;
   font-size: 18px;
   font-family: Verdana;
   font-style: italic;
   letter-spacing: 2px;
-  text-align: center;
-  margin-bottom: 20px;
+  padding-left: 102px;
 }
 
-/* Recently Viewed Section */
-.recently-viewed {
-  margin-bottom: 20px;
+.footer .arTitles {
+  font-size: 12px;
 }
 
-.recently-viewed h3 {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 10px;
-}
-
-.recently-viewed-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.recently-viewed-item {
-  width: 18%;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.recently-viewed-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.recently-viewed-item:hover .recently-viewed-image {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.recently-viewed-item p {
-  margin-top: 5px;
-  font-size: 1em;
-  color: white;
-}
-
-.footnote {
-  font-size: 1em;
+.footer .footnote {
   color: grey;
-  margin-top: 20px;
   text-align: center;
-}
-
-/* Mobile Responsiveness */
-@media screen and (max-width: 768px) {
-  .recently-viewed-item {
-    width: 45%;
-  }
-
-  .footer {
-    padding: 10px;
-  }
-
-  .footnote {
-    font-size: 0.9em;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .recently-viewed-item {
-    width: 80%;
-  }
-
-  .footnote {
-    font-size: 0.8em;
-  }
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  margin-left: 50%;
 }
