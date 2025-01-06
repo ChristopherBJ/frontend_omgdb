@@ -7,3 +7,5 @@ services:
       dockerfile: omgdb_frontend.Dockerfile
     ports:
       - "8080:80"
+    environment:
+      REACT_APP_API_KEY: ${REACT_APP_API_KEY} 
