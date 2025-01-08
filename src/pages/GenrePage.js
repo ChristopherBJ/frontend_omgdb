@@ -29,10 +29,10 @@ const GenrePage = () => {
     const navigate = useNavigate();
     const { user, token } = useAuth();
 
-
+    const HOST = process.env.REACT_APP_OMG_API_URL;
     // Fetch genres when the component mounts
     useEffect(() => {
-        fetch('https://localhost/api/genre?pageSize=60')
+        fetch(`${HOST}/api/genre?pageSize=60`)
             .then((response) => response.json())
             .then((data) => {
                 setGenres(data); // Set genres data to the state
@@ -47,17 +47,17 @@ const GenrePage = () => {
         const fetchGenreDetails = async () => {
             try {
                 // Fetch movies for the current genre
-                const moviesResponse = await fetch(`https://localhost/api/genre/${currentGenre}/movies`);
+                const moviesResponse = await fetch(`${HOST}/api/genre/${currentGenre}/movies`);
                 const data = await moviesResponse.json();
                 setData(data);
 
                 // Fetch series for the current genre
-                const seriesResponse = await fetch(`https://localhost/api/genre/${currentGenre}/series`);
+                const seriesResponse = await fetch(`${HOST}/api/genre/${currentGenre}/series`);
                 const seriesData = await seriesResponse.json();
                 setSeries(seriesData);
 
                 // Fetch episodes for the current genre
-                const episodesResponse = await fetch(`https://localhost/api/genre/${currentGenre}/episodes`);
+                const episodesResponse = await fetch(`${HOST}/api/genre/${currentGenre}/episodes`);
                 const episodesData = await episodesResponse.json();
                 setEpisodes(episodesData);
                 fetchUserWatchlistStatuses(data);
@@ -86,7 +86,7 @@ const GenrePage = () => {
                     : `episode/${item.titleId}`;
 
             try {
-                const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/${endpoint}`, {
+                const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/${endpoint}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ const GenrePage = () => {
         };
 
         try {
-            const response = await fetch(`https://localhost/api/user/watchlist/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/watchlist/${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -179,7 +179,7 @@ const GenrePage = () => {
                 : `episode/${itemId}`;
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/${endpoint}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -219,7 +219,7 @@ const GenrePage = () => {
                 : `episode/${itemId}`;
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/${endpoint}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -262,7 +262,7 @@ const GenrePage = () => {
                     : `episode/${item.titleId}`;
 
             try {
-                const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+                const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -308,7 +308,7 @@ const GenrePage = () => {
         };
 
         try {
-            const response = await fetch(`https://localhost/api/user/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/ratings/${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -351,7 +351,7 @@ const GenrePage = () => {
                 : `episode/${selectedItem.titleId}`;
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -398,7 +398,7 @@ const GenrePage = () => {
         };
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -439,7 +439,7 @@ const GenrePage = () => {
                 : `episode/${itemId}`;
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

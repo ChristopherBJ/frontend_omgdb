@@ -25,6 +25,8 @@ function SignUp() {
         return strongPasswordRegex.test(password);
     };
 
+    const HOST = process.env.REACT_APP_OMG_API_URL;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(""); // Clear previous errors
@@ -49,7 +51,7 @@ function SignUp() {
 
         try {
             // Make API call to create user
-            const response = await fetch("https://localhost/api/user/create", {
+            const response = await fetch(`${HOST}/api/user/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

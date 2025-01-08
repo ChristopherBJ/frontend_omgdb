@@ -13,13 +13,14 @@ const Watchlist = () => {
   const [fetched, setFetched] = useState(false); // Track if watchlist is fetched
   const { user, token } = useAuth();
   const navigate = useNavigate();
+  const HOST = process.env.REACT_APP_OMG_API_URL;
 
   // Fetch watchlist for the user
   const fetchWatchlist = async () => {
     if (!user || !token || fetched) return;
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/watchlist`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

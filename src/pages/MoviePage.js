@@ -27,14 +27,16 @@ const MoviePage = () => {
     navigate(-1); // Navigate to the previous page
   };
 
+  const HOST = process.env.REACT_APP_OMG_API_URL;
+  
   // Fetch movie data
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [titleResponse, genreResponse, actorResponse] = await Promise.all([
-          fetch(`https://localhost/api/movie/${titleId}`),
-          fetch(`https://localhost/api/movie/${titleId}/genre`),
-          fetch(`https://localhost/api/movie/${titleId}/actors`),
+          fetch(`${HOST}/api/movie/${titleId}`),
+          fetch(`${HOST}/api/movie/${titleId}/genre`),
+          fetch(`${HOST}/api/movie/${titleId}/actors`),
         ]);
 
         if (!titleResponse.ok || !genreResponse.ok || !actorResponse.ok) {
@@ -64,7 +66,7 @@ const MoviePage = () => {
     if (!user || !token || ratingFetched) return;
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/ratings/movie/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/ratings/movie/${titleId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +112,7 @@ const MoviePage = () => {
     };
 
     try {
-      const response = await fetch('https://localhost/api/user/ratings/movie', {
+      const response = await fetch(`${HOST}/api/user/ratings/movie`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,7 +143,7 @@ const MoviePage = () => {
     }
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/ratings/movie/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/ratings/movie/${titleId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -167,7 +169,7 @@ const MoviePage = () => {
     if (!user || !token || watchlistFetched) return;
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/movie/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/movie/${titleId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -202,7 +204,7 @@ const MoviePage = () => {
     };
 
     try {
-      const response = await fetch('https://localhost/api/user/watchlist/movie', {
+      const response = await fetch(`${HOST}/api/user/watchlist/movie`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -230,7 +232,7 @@ const MoviePage = () => {
     }
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/movie/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/movie/${titleId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

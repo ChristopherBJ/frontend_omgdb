@@ -22,6 +22,7 @@ const EpisodePage = () => {
 
   const navigate = useNavigate();
   const { user, token } = useAuth();
+  const HOST = process.env.REACT_APP_OMG_API_URL;
 
   const goBack = () => {
     navigate(-1); // Navigate to the previous page
@@ -32,9 +33,9 @@ const EpisodePage = () => {
     const fetchData = async () => {
       try {
         const [titleResponse, genreResponse, actorResponse] = await Promise.all([
-          fetch(`https://localhost/api/episode/${titleId}`),
-          fetch(`https://localhost/api/episode/${titleId}/genre`),
-          fetch(`https://localhost/api/episode/${titleId}/actors`),
+          fetch(`${HOST}/api/episode/${titleId}`),
+          fetch(`${HOST}/api/episode/${titleId}/genre`),
+          fetch(`${HOST}/api/episode/${titleId}/actors`),
         ]);
 
         if (!titleResponse.ok || !genreResponse.ok || !actorResponse.ok) {
@@ -64,7 +65,7 @@ const EpisodePage = () => {
     if (!user || !token || ratingFetched) return;
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/ratings/episode/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/ratings/episode/${titleId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +111,7 @@ const EpisodePage = () => {
     };
 
     try {
-      const response = await fetch('https://localhost/api/user/ratings/episode', {
+      const response = await fetch(`${HOST}/api/user/ratings/episode`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,7 +142,7 @@ const EpisodePage = () => {
     }
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/ratings/episode/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/ratings/episode/${titleId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -167,7 +168,7 @@ const EpisodePage = () => {
     if (!user || !token || watchlistFetched) return;
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/episode/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/episode/${titleId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -202,7 +203,7 @@ const EpisodePage = () => {
     };
 
     try {
-      const response = await fetch('https://localhost/api/user/watchlist/episode', {
+      const response = await fetch(`${HOST}/api/user/watchlist/episode`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -230,7 +231,7 @@ const EpisodePage = () => {
     }
 
     try {
-      const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/episode/${titleId}`, {
+      const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/episode/${titleId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

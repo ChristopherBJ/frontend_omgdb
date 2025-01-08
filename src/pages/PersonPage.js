@@ -8,7 +8,7 @@ const PersonPage = () => {
     const navigate = useNavigate();
     const { id } = useParams(); // Grab the personId from the route parameters
     const APIKey = process.env.REACT_APP_API_KEY;
-
+    const HOST = process.env.REACT_APP_OMG_API_URL;
     const goBack = () => {
         navigate(-1); // Navigate to the previous page
     };
@@ -19,7 +19,7 @@ const PersonPage = () => {
 
     // Fetch the person by ID when the component mounts or personId changes
     useEffect(() => {
-        fetch(`https://localhost/api/person/${id}`) // Adjust the endpoint to fetch by ID
+        fetch(`${HOST}/api/person/${id}`) // Adjust the endpoint to fetch by ID
             .then((response) => response.json())
             .then((data) => {
                 console.log('Fetched Person Data:', data);
@@ -58,7 +58,7 @@ const PersonPage = () => {
     }, [person, APIKey]); // This effect runs when person data is available
 
     useEffect(() => {
-        fetch(`https://localhost/api/person/${id}/credit`) // Adjust the endpoint to fetch by ID
+        fetch(`${HOST}/api/person/${id}/credit`) // Adjust the endpoint to fetch by ID
             .then((response) => response.json())
             .then((data) => {
                 console.log('Fetched Person Data:', data);

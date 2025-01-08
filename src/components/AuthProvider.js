@@ -10,13 +10,13 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("site") || "");
   const navigate = useNavigate();
-
+  const HOST = process.env.REACT_APP_OMG_API_URL;
  
  
 
   const loginAction = async (email, password) => {
     try {
-      const response = await fetch(`https://localhost/api/user/login?email=${encodeURIComponent(email)}&loginPassword=${encodeURIComponent(password)}`, {
+      const response = await fetch(`${HOST}/api/user/login?email=${encodeURIComponent(email)}&loginPassword=${encodeURIComponent(password)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
       });
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch(`https://localhost/api/user/${storedUser.id}`, {
+      const response = await fetch(`${HOST}/api/user/${storedUser.id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

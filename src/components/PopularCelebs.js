@@ -9,10 +9,11 @@ const PopularCelebs = () => {
     const [data, setData] = useState([]);
     const navigate = useNavigate();
     const APIKey = process.env.REACT_APP_API_KEY;
+    const HOST = process.env.REACT_APP_OMG_API_URL;
 
     // First useEffect: Fetch the list of people
     useEffect(() => {
-        fetch('https://localhost/api/person?pageSize=30')
+        fetch(`${HOST}/api/person?pageSize=30`)
             .then((response) => response.json())
             .then((data) => {
                 console.log("Fetched Data:", data);

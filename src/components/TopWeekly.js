@@ -19,10 +19,11 @@ const TopWeekly = () => {
     const [ratingStatus, setRatingStatus] = useState(null); // Feedback message
     const navigate = useNavigate();
     const { user, token } = useAuth();
+    const HOST = process.env.REACT_APP_OMG_API_URL;
 
     // Fetch top weekly 
     useEffect(() => {
-        fetch('https://localhost/api/topweekly?pageSize=30')
+        fetch(`${HOST}/api/topweekly?pageSize=30`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data); // Check data structure
@@ -50,7 +51,7 @@ const TopWeekly = () => {
                     : `episode/${item.titleId}`;
 
             try {
-                const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/${endpoint}`, {
+                const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/${endpoint}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,7 +99,7 @@ const TopWeekly = () => {
         };
 
         try {
-            const response = await fetch(`https://localhost/api/user/watchlist/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/watchlist/${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -143,7 +144,7 @@ const TopWeekly = () => {
                 : `episode/${itemId}`;
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/${endpoint}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -184,7 +185,7 @@ const TopWeekly = () => {
 
         // Fetch the watchlist status for the item
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/watchlist/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/watchlist/${endpoint}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -227,7 +228,7 @@ const TopWeekly = () => {
                     : `episode/${item.titleId}`;
 
             try {
-                const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+                const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -273,7 +274,7 @@ const TopWeekly = () => {
         };
 
         try {
-            const response = await fetch(`https://localhost/api/user/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/ratings/${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -316,7 +317,7 @@ const TopWeekly = () => {
                 : `episode/${selectedItem.titleId}`;
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -363,7 +364,7 @@ const TopWeekly = () => {
         };
     
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -404,7 +405,7 @@ const TopWeekly = () => {
                 : `episode/${itemId}`;
 
         try {
-            const response = await fetch(`https://localhost/api/user/${user.id}/ratings/${endpoint}`, {
+            const response = await fetch(`${HOST}/api/user/${user.id}/ratings/${endpoint}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
