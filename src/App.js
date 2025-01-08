@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthProvider from "./components/AuthProvider";
@@ -58,9 +58,9 @@ function App() {
                 <Route path="/genre" element={<GenrePage />} />
                 <Route path="/genre/:genrename" element={<GenrePage />} />
                 <Route path="/person/:id" element={<PersonPage />} />
-                <Route path="/top-weekly" element={<TopWeekly/>} />
-                <Route path="/popularcelebs" element={<PopluarCelebs/>} />
-                <Route path="/watchlist" element={<Watchlisted/>} />
+                <Route path="/top-weekly" element={<TopWeekly />} />
+                <Route path="/popularcelebs" element={<PopluarCelebs />} />
+                <Route path="/watchlist" element={<Watchlisted />} />
               </Route>
             </Route>
 
@@ -78,4 +78,3 @@ export default App;
 
 
 
-  

@@ -72,7 +72,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Run docker-compose up
 
 ```sh
-docker compose -f docker-compose.yml --env-file .env up --build -d
+docker compose -f docker-compose.yml --env-file .env.production up --build -d
 ```
 
 ### Folder Structure
