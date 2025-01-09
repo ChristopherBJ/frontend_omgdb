@@ -80,7 +80,7 @@ const PopularCelebs = () => {
 
     return (
         <div>
-            <h2>Most Popular Actors</h2>
+            <h2>Most Popular PopluarCelebs</h2>
             <Carousel indicators={false} interval={null} className="carousel">
                 {groupedData.map((group, groupIndex) => (
                     <Carousel.Item key={groupIndex}>
